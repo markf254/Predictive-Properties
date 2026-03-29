@@ -1,2143 +1,1554 @@
 diff --git a/projects.html b/projects.html
-index f9b608414cf9d09c0bd5ad84bde0e8c9b8021408..931f428ee86fb1c17d05abf7dfbfac218eaf58fe 100644
+index 5174df17715e4f8b68af1972c10fa57379a9383b..713a35d544afd91a63986b493a4ecedf9642b483 100644
 --- a/projects.html
 +++ b/projects.html
-@@ -1,1554 +1,584 @@
--diff --git a/projects.html b/projects.html
--index 5174df17715e4f8b68af1972c10fa57379a9383b..713a35d544afd91a63986b493a4ecedf9642b483 100644
----- a/projects.html
--+++ b/projects.html
--@@ -1,881 +1,668 @@
---<!DOCTYPE html>
---<html lang="en">
---<head>
---  <meta charset="UTF-8" />
---  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
---  <title>Predictive Properties Projects | Before & After Renovations</title>
---  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations [your city]." />
---  <meta name="keywords" content="house flipping before and after, home renovations [your city], luxury property flips, Predictive Properties projects" />
---  <style>
---    :root {
---      --bg: #0f0f13;
---      --surface: #181a23;
---      --text: #f3f2ee;
---      --muted: #bbb9b2;
---      --gold: #d4af37;
---      --gold-soft: #f2dd9a;
---      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
---      --radius: 14px;
---      --max-width: 1120px;
---    }
---
---    * { box-sizing: border-box; }
---    html { scroll-behavior: smooth; }
---
---    body {
---      margin: 0;
---      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
---      color: var(--text);
---      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
---      line-height: 1.6;
---    }
---
---    h1, h2, h3 {
---      font-family: "Playfair Display", Georgia, serif;
---      margin-top: 0;
---    }
---
---    .container {
---      width: min(92%, var(--max-width));
---      margin: 0 auto;
---    }
---
---    header {
---      position: sticky;
---      top: 0;
---      background: rgba(15, 15, 19, 0.86);
---      backdrop-filter: blur(8px);
---      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
---      z-index: 10;
---    }
---
---    .nav-wrap {
---      padding: 0.95rem 0;
---      display: flex;
---      align-items: center;
---      justify-content: space-between;
---      gap: 1rem;
---      flex-wrap: wrap;
---    }
---
---    .logo {
---      font-family: "Playfair Display", Georgia, serif;
---      font-weight: 700;
---      color: var(--gold-soft);
---      text-decoration: none;
---    }
---
---    nav { display: flex; gap: 0.8rem; }
---
---    nav a {
---      color: var(--muted);
---      text-decoration: none;
---      padding: 0.35rem 0.65rem;
---      border-radius: 999px;
---      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
---    }
---
---    nav a:hover,
---    nav a:focus-visible {
---      color: var(--gold-soft);
---      box-shadow: inset 0 -1px 0 var(--gold);
---      transform: translateY(-1px);
---      outline: none;
---    }
---
---    .hero {
---      text-align: center;
---      padding: 4.2rem 0 3rem;
---    }
---
---    .hero h1 {
---      font-size: clamp(2rem, 4.4vw, 3.4rem);
---      margin-bottom: 0.8rem;
---    }
---
---    .hero p { color: var(--muted); max-width: 760px; margin: 0 auto; }
---
---    .fade-in {
---      opacity: 0;
---      transform: translateY(16px);
---      transition: opacity 0.8s ease, transform 0.8s ease;
---    }
---
---    .fade-in.visible { opacity: 1; transform: translateY(0); }
---
---    .projects-grid {
---      display: grid;
---      grid-template-columns: repeat(3, minmax(0, 1fr));
---      gap: 1rem;
---      padding-bottom: 3rem;
---    }
---
---    .project-card {
---      background: linear-gradient(175deg, #1b1e29, #141722);
---      border-radius: var(--radius);
---      border: 1px solid rgba(212, 175, 55, 0.22);
---      box-shadow: var(--shadow);
---      overflow: hidden;
---      transition: transform 0.28s ease, box-shadow 0.28s ease;
---    }
---
---    .project-card:hover {
---      transform: translateY(-4px);
---      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
---    }
---
---    .project-body { padding: 1rem; }
---    .project-body h3 { color: var(--gold-soft); margin-bottom: 0.45rem; }
---    .project-body p { margin: 0 0 0.6rem; color: var(--muted); }
---
---    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
---
---    .tag {
---      border: 1px solid rgba(212, 175, 55, 0.35);
---      border-radius: 999px;
---      padding: 0.2rem 0.55rem;
---      font-size: 0.82rem;
---      color: var(--gold-soft);
---    }
---
---    .placeholder {
---      min-height: 170px;
---      background: linear-gradient(135deg, #262a39, #1a1d29);
---      display: grid;
---      place-items: center;
---      font-family: "Playfair Display", Georgia, serif;
---      color: rgba(255,255,255,0.86);
---      text-align: center;
---      padding: 1rem;
---    }
---
---    .cta {
---      text-align: center;
---      padding: 2rem 0 3.5rem;
---    }
---
---    .btn {
---      display: inline-block;
---      text-decoration: none;
---      padding: 0.75rem 1.2rem;
---      border-radius: 999px;
---      border: 1px solid rgba(212, 175, 55, 0.7);
---      background: linear-gradient(135deg, #c29f35, #ebcc6d);
---      color: #171717;
---      font-weight: 700;
---      box-shadow: var(--shadow);
---      transition: transform 0.25s ease, box-shadow 0.25s ease;
---    }
---
---    .btn:hover,
---    .btn:focus-visible {
---      transform: translateY(-2px);
---      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
---      outline: none;
---    }
---
---    footer {
---      border-top: 1px solid rgba(212, 175, 55, 0.2);
---      color: var(--muted);
---      text-align: center;
---      padding: 1.5rem 0;
---    }
---
---    @media (max-width: 920px) {
---      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
---    }
---
---    @media (max-width: 640px) {
---      .projects-grid { grid-template-columns: 1fr; }
---      .hero { padding-top: 3.4rem; }
---    }
---  </style>
---</head>
---<body>
---  <header>
---    <div class="container nav-wrap">
---      <a class="logo" href="index.html">Predictive Properties</a>
---      <nav aria-label="Primary navigation">
---        <a href="index.html#services">Services</a>
---        <a href="index.html#testimonials">Testimonials</a>
---        <a href="index.html#contact">Contact</a>
---      </nav>
---    </div>
---  </header>
---
---  <main>
---    <section class="hero fade-in">
---      <div class="container">
---        <h1>Before &amp; After Project Portfolio</h1>
---        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
---      </div>
---    </section>
---
---    <section class="container fade-in">
---      <h2>Featured Renovation Outcomes</h2>
---      <div class="projects-grid">
---        <article class="project-card">
---          <div class="placeholder">Downtown Revival<br/>Before &amp; After</div>
---          <div class="project-body">
---            <h3>Urban Luxury Refresh</h3>
---            <p>Modernized kitchen and bath suite with premium fixtures and warm natural finishes.</p>
---            <div class="tags"><span class="tag">ROI Focused</span><span class="tag">8 Weeks</span></div>
---          </div>
---        </article>
---
---        <article class="project-card">
---          <div class="placeholder">Family Home Reinvention<br/>Before &amp; After</div>
---          <div class="project-body">
---            <h3>Suburban Full Remodel</h3>
---            <p>Open-concept redesign, custom millwork, and curb appeal updates that raised buyer demand.</p>
---            <div class="tags"><span class="tag">Top Offer</span><span class="tag">10 Weeks</span></div>
---          </div>
---        </article>
---
---        <article class="project-card">
---          <div class="placeholder">Classic to Contemporary<br/>Before &amp; After</div>
---          <div class="project-body">
---            <h3>Executive-Style Upgrade</h3>
---            <p>Elevated finishes, refined lighting, and layout optimization for luxury listing presentation.</p>
---            <div class="tags"><span class="tag">High-End</span><span class="tag">7 Weeks</span></div>
---          </div>
---        </article>
---      </div>
---    </section>
---
---    <section class="cta fade-in">
---      <div class="container">
---        <h2>Start Your Next Transformation</h2>
---        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
---        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
---      </div>
---    </section>
---  </main>
---
---  <footer>
---    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
---  </footer>
---
---  <script>
---    const fadeInSections = document.querySelectorAll('.fade-in');
---    const observer = new IntersectionObserver((entries, obs) => {
---      entries.forEach((entry) => {
---        if (entry.isIntersecting) {
---          entry.target.classList.add('visible');
---          obs.unobserve(entry.target);
---        }
---      });
---    }, { threshold: 0.16 });
---
---    fadeInSections.forEach((section) => observer.observe(section));
---  </script>
---</body>
---</html>
---<!DOCTYPE html>
---<html lang="en">
---<head>
---  <meta charset="UTF-8" />
---  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
---  <title>Predictive Properties Projects | Before &amp; After Renovations</title>
---  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations [your city]." />
---  <meta name="keywords" content="house flipping before and after, home renovations [your city], luxury property flips, Predictive Properties projects" />
---  <style>
---    :root {
---      --bg: #0f0f13;
---      --surface: #181a23;
---      --text: #f3f2ee;
---      --muted: #bbb9b2;
---      --gold: #d4af37;
---      --gold-soft: #f2dd9a;
---      --navy: #141b2d;
---      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
---      --radius: 14px;
---      --max-width: 1120px;
---    }
---
---    * { box-sizing: border-box; }
---    html { scroll-behavior: smooth; }
---
---    body {
---      margin: 0;
---      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
---      color: var(--text);
---      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
---      line-height: 1.6;
---    }
---
---    h1, h2, h3 {
---      font-family: "Playfair Display", Georgia, serif;
---      margin-top: 0;
---    }
---
---    .container {
---      width: min(92%, var(--max-width));
---      margin: 0 auto;
---    }
---
---    header {
---      position: sticky;
---      top: 0;
---      background: rgba(15, 15, 19, 0.86);
---      backdrop-filter: blur(8px);
---      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
---      z-index: 10;
---    }
---
---    .nav-wrap {
---      padding: 0.95rem 0;
---      display: flex;
---      align-items: center;
---      justify-content: space-between;
---      gap: 1rem;
---      flex-wrap: wrap;
---    }
---
---    .logo {
---      font-family: "Playfair Display", Georgia, serif;
---      font-weight: 700;
---      color: var(--gold-soft);
---      text-decoration: none;
---    }
---
---    nav { display: flex; gap: 0.8rem; }
---
---    nav a {
---      color: var(--muted);
---      text-decoration: none;
---      padding: 0.35rem 0.65rem;
---      border-radius: 999px;
---      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
---    }
---
---    nav a:hover,
---    nav a:focus-visible {
---      color: var(--gold-soft);
---      box-shadow: inset 0 -1px 0 var(--gold);
---      transform: translateY(-1px);
---      outline: none;
---    }
---
---    .hero {
---      text-align: center;
---      padding: 4.2rem 0 2.2rem;
---    }
---
---    .hero h1 {
---      font-size: clamp(2rem, 4.4vw, 3.4rem);
---      margin-bottom: 0.8rem;
---    }
---
---    .hero p { color: var(--muted); max-width: 760px; margin: 0 auto; }
---
---    .fade-in {
---      opacity: 0;
---      transform: translateY(16px);
---      transition: opacity 0.8s ease, transform 0.8s ease;
---    }
---
---    .fade-in.visible { opacity: 1; transform: translateY(0); }
---
---    .project-group {
---      margin-bottom: 2.2rem;
---    }
---
---    .group-title {
---      margin-bottom: 0.9rem;
---      color: var(--gold-soft);
---      letter-spacing: 0.03em;
---    }
---
---    .projects-grid {
---      display: grid;
---      grid-template-columns: repeat(2, minmax(0, 1fr));
---      gap: 1rem;
---    }
---
---    .project-card {
---      background: linear-gradient(175deg, #1b1e29, #141722);
---      border-radius: var(--radius);
---      border: 1px solid rgba(212, 175, 55, 0.22);
---      box-shadow: var(--shadow);
---      overflow: hidden;
---      transition: transform 0.28s ease, box-shadow 0.28s ease;
---      cursor: pointer;
---    }
---
---    .project-card:hover {
---      transform: translateY(-4px);
---      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
---    }
---
---    .project-thumb {
---      width: 100%;
---      height: 200px;
---      object-fit: cover;
---      display: block;
---      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
---    }
---
---    .project-body { padding: 1rem; }
---    .project-body h3 { color: var(--gold-soft); margin-bottom: 0.45rem; }
---    .project-body p { margin: 0 0 0.6rem; color: var(--muted); }
---
---    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
---
---    .tag {
---      border: 1px solid rgba(212, 175, 55, 0.35);
---      border-radius: 999px;
---      padding: 0.2rem 0.55rem;
---      font-size: 0.82rem;
---      color: var(--gold-soft);
---    }
---
---    .cta {
---      text-align: center;
---      padding: 2rem 0 3.5rem;
---    }
---
---    .btn {
---      display: inline-block;
---      text-decoration: none;
---      padding: 0.75rem 1.2rem;
---      border-radius: 999px;
---      border: 1px solid rgba(212, 175, 55, 0.7);
---      background: linear-gradient(135deg, #c29f35, #ebcc6d);
---      color: #171717;
---      font-weight: 700;
---      box-shadow: var(--shadow);
---      transition: transform 0.25s ease, box-shadow 0.25s ease;
---    }
---
---    .btn:hover,
---    .btn:focus-visible {
---      transform: translateY(-2px);
---      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
---      outline: none;
---    }
---
---    .modal {
---      position: fixed;
---      inset: 0;
---      background: rgba(7, 10, 18, 0.86);
---      display: none;
---      align-items: center;
---      justify-content: center;
---      padding: 1rem;
---      z-index: 100;
---    }
---
---    .modal.open { display: flex; }
---
---    .modal-panel {
---      width: min(960px, 100%);
---      background: linear-gradient(175deg, #131b30, #10141f);
---      border: 1px solid rgba(212, 175, 55, 0.35);
---      border-radius: var(--radius);
---      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
---      overflow: hidden;
---    }
---
---    .modal-header {
---      display: flex;
---      justify-content: space-between;
---      align-items: center;
---      gap: 1rem;
---      padding: 0.9rem 1rem;
---      background: rgba(20, 27, 45, 0.85);
---      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
---    }
---
---    .modal-header h3 { margin: 0; color: var(--gold-soft); }
---
---    .close-btn {
---      border: 1px solid rgba(212, 175, 55, 0.4);
---      border-radius: 999px;
---      background: transparent;
---      color: var(--gold-soft);
---      padding: 0.35rem 0.7rem;
---      cursor: pointer;
---      font-weight: 600;
---    }
---
---    .modal-content { padding: 1rem; }
---
---    .ba-slider {
---      position: relative;
---      width: 100%;
---      aspect-ratio: 16 / 9;
---      border-radius: 12px;
---      overflow: hidden;
---      background: #111;
---      border: 1px solid rgba(212, 175, 55, 0.25);
---      user-select: none;
---      touch-action: none;
---    }
---
---    .ba-image {
---      position: absolute;
---      inset: 0;
---      width: 100%;
---      height: 100%;
---      object-fit: cover;
---      pointer-events: none;
---    }
---
---    .after-wrap {
---      position: absolute;
---      inset: 0;
---      width: 50%;
---      overflow: hidden;
---    }
---
---    .slider-line {
---      position: absolute;
---      top: 0;
---      bottom: 0;
---      left: 50%;
---      width: 2px;
---      background: var(--gold);
---      box-shadow: 0 0 0 1px rgba(20, 27, 45, 0.9);
---      transform: translateX(-50%);
---      pointer-events: none;
---    }
---
---    .slider-handle {
---      position: absolute;
---      left: 50%;
---      top: 50%;
---      transform: translate(-50%, -50%);
---      width: 38px;
---      height: 38px;
---      border-radius: 50%;
---      background: var(--navy);
---      border: 2px solid var(--gold);
---      box-shadow: 0 8px 16px rgba(0,0,0,0.35);
---      pointer-events: none;
---    }
---
---    .label {
---      position: absolute;
---      top: 0.8rem;
---      padding: 0.22rem 0.55rem;
---      border-radius: 999px;
---      font-size: 0.74rem;
---      font-weight: 700;
---      letter-spacing: 0.04em;
---      color: #f4f3ef;
---      background: rgba(20, 27, 45, 0.78);
---      border: 1px solid rgba(212, 175, 55, 0.46);
---      text-transform: uppercase;
---    }
---
---    .label-before { left: 0.8rem; }
---    .label-after { right: 0.8rem; }
---
---    .modal-meta {
---      margin-top: 0.8rem;
---      color: var(--muted);
---      font-size: 0.95rem;
---    }
---
---    footer {
---      border-top: 1px solid rgba(212, 175, 55, 0.2);
---      color: var(--muted);
---      text-align: center;
---      padding: 1.5rem 0;
---    }
---
---    @media (max-width: 920px) {
---      .projects-grid { grid-template-columns: 1fr; }
---    }
---
---    @media (max-width: 640px) {
---      .hero { padding-top: 3.4rem; }
---      .project-thumb { height: 188px; }
---      .modal-content { padding: 0.75rem; }
---    }
---  </style>
---</head>
---<body>
---  <header>
---    <div class="container nav-wrap">
---      <a class="logo" href="index.html">Predictive Properties</a>
---      <nav aria-label="Primary navigation">
---        <a href="index.html#services">Services</a>
---        <a href="index.html#testimonials">Testimonials</a>
---        <a href="index.html#contact">Contact</a>
---      </nav>
---    </div>
---  </header>
---
---  <main>
---    <section class="hero fade-in">
---      <div class="container">
---        <h1>Before &amp; After Project Portfolio</h1>
---        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
---      </div>
---    </section>
---
---    <section class="container fade-in">
---      <h2>Featured Renovation Outcomes</h2>
---
---      <div class="project-group">
---        <h3 class="group-title">Kitchen</h3>
---        <div class="projects-grid">
---          <article class="project-card" data-project="1" tabindex="0" role="button" aria-label="Open kitchen project 1 before and after">
---            <img class="project-thumb" src="assets/images/a01.jpg" alt="After renovation view of kitchen project 1" loading="lazy" />
---            <div class="project-body">
---              <h3>Modern Entertainer Kitchen</h3>
---              <p>Expanded prep space, premium cabinetry, and warm brass accents for an upscale yet livable finish.</p>
---              <div class="tags"><span class="tag">Kitchen</span><span class="tag">6 Weeks</span></div>
---            </div>
---          </article>
---
---          <article class="project-card" data-project="2" tabindex="0" role="button" aria-label="Open kitchen project 2 before and after">
---            <img class="project-thumb" src="assets/images/a02.jpg" alt="After renovation view of kitchen project 2" loading="lazy" />
---            <div class="project-body">
---              <h3>Bright Open-Concept Kitchen</h3>
---              <p>Removed visual clutter and added a generous island to improve flow, storage, and day-to-day function.</p>
---              <div class="tags"><span class="tag">Kitchen</span><span class="tag">8 Weeks</span></div>
---            </div>
---          </article>
---        </div>
---      </div>
---
---      <div class="project-group">
---        <h3 class="group-title">Bathroom</h3>
---        <div class="projects-grid">
---          <article class="project-card" data-project="3" tabindex="0" role="button" aria-label="Open bathroom project 1 before and after">
---            <img class="project-thumb" src="assets/images/a03.jpg" alt="After renovation view of bathroom project 1" loading="lazy" />
---            <div class="project-body">
---              <h3>Spa-Inspired Primary Bath</h3>
---              <p>Converted dated fixtures to a clean, spa-like retreat with layered lighting and oversized tile.</p>
---              <div class="tags"><span class="tag">Bathroom</span><span class="tag">4 Weeks</span></div>
---            </div>
---          </article>
---
---          <article class="project-card" data-project="4" tabindex="0" role="button" aria-label="Open bathroom project 2 before and after">
---            <img class="project-thumb" src="assets/images/a04.jpg" alt="After renovation view of bathroom project 2" loading="lazy" />
---            <div class="project-body">
---              <h3>Guest Bath Style Upgrade</h3>
---              <p>Introduced modern vanity lines, high-contrast materials, and improved storage in a compact footprint.</p>
---              <div class="tags"><span class="tag">Bathroom</span><span class="tag">3 Weeks</span></div>
---            </div>
---          </article>
---        </div>
---      </div>
---
---      <div class="project-group">
---        <h3 class="group-title">Exterior</h3>
---        <div class="projects-grid">
---          <article class="project-card" data-project="5" tabindex="0" role="button" aria-label="Open exterior project before and after">
---            <img class="project-thumb" src="assets/images/a05.jpg" alt="After renovation view of exterior project" loading="lazy" />
---            <div class="project-body">
---              <h3>Luxury Curb Appeal Refresh</h3>
---              <p>Updated facade finishes, front approach, and landscape structure to strengthen first impressions.</p>
---              <div class="tags"><span class="tag">Exterior</span><span class="tag">5 Weeks</span></div>
---            </div>
---          </article>
---        </div>
---      </div>
---
---      <div class="project-group">
---        <h3 class="group-title">Full Home Renovation</h3>
---        <div class="projects-grid">
---          <article class="project-card" data-project="6" tabindex="0" role="button" aria-label="Open full home renovation project before and after">
---            <img class="project-thumb" src="assets/images/a06.jpg" alt="After renovation view of full home renovation project" loading="lazy" />
---            <div class="project-body">
---              <h3>Complete Home Reinvention</h3>
---              <p>Whole-home transformation across kitchen, bath, living spaces, and exterior for maximum resale value.</p>
---              <div class="tags"><span class="tag">Full Home</span><span class="tag">12 Weeks</span></div>
---            </div>
---          </article>
---        </div>
---      </div>
---    </section>
---
---    <section class="cta fade-in">
---      <div class="container">
---        <h2>Start Your Next Transformation</h2>
---        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
---        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
---      </div>
---    </section>
---  </main>
---
---  <div class="modal" id="projectModal" aria-hidden="true">
---    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
---      <div class="modal-header">
---        <h3 id="modalTitle">Project Before &amp; After</h3>
---        <button class="close-btn" id="closeModal" type="button" aria-label="Close project modal">Close</button>
---      </div>
---      <div class="modal-content">
---        <div class="ba-slider" id="baSlider">
---          <img class="ba-image" id="beforeImage" src="assets/images/b01.jpg" alt="Before renovation image" />
---          <div class="after-wrap" id="afterWrap">
---            <img class="ba-image" id="afterImage" src="assets/images/a01.jpg" alt="After renovation image" />
---          </div>
---          <span class="label label-before">BEFORE</span>
---          <span class="label label-after">AFTER</span>
---          <div class="slider-line" id="sliderLine"></div>
---          <div class="slider-handle" id="sliderHandle"></div>
---        </div>
---        <p class="modal-meta" id="modalMeta"></p>
---      </div>
---    </div>
---  </div>
---
---  <footer>
---    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
---  </footer>
---
---  <script>
---    const fadeInSections = document.querySelectorAll('.fade-in');
---    const observer = new IntersectionObserver((entries, obs) => {
---      entries.forEach((entry) => {
---        if (entry.isIntersecting) {
---          entry.target.classList.add('visible');
---          obs.unobserve(entry.target);
---        }
---      });
---    }, { threshold: 0.16 });
---
---    fadeInSections.forEach((section) => observer.observe(section));
---
---    const projectData = {
---      1: {
---        title: 'Modern Entertainer Kitchen',
---        summary: 'Kitchen renovation with improved flow, larger prep zones, and premium materials.',
---        before: 'assets/images/b01.jpg',
---        after: 'assets/images/a01.jpg'
---      },
---      2: {
---        title: 'Bright Open-Concept Kitchen',
---        summary: 'Kitchen transformation focused on open sightlines, natural light, and better storage.',
---        before: 'assets/images/b02.jpg',
---        after: 'assets/images/a02.jpg'
---      },
---      3: {
---        title: 'Spa-Inspired Primary Bath',
---        summary: 'Bathroom refresh with modern finishes and a high-end, calming aesthetic.',
---        before: 'assets/images/b03.jpg',
---        after: 'assets/images/a03.jpg'
---      },
---      4: {
---        title: 'Guest Bath Style Upgrade',
---        summary: 'Bathroom redesign delivering a cleaner layout and stronger visual impact.',
---        before: 'assets/images/b04.jpg',
---        after: 'assets/images/a04.jpg'
---      },
---      5: {
---        title: 'Luxury Curb Appeal Refresh',
---        summary: 'Exterior updates designed to elevate first impressions and buyer confidence.',
---        before: 'assets/images/b05.jpg',
---        after: 'assets/images/a05.jpg'
---      },
---      6: {
---        title: 'Complete Home Reinvention',
---        summary: 'Full-home renovation integrating kitchen, bath, interior living, and exterior upgrades.',
---        before: 'assets/images/b06.jpg',
---        after: 'assets/images/a06.jpg'
---      }
---    };
---
---    const modal = document.getElementById('projectModal');
---    const closeModalBtn = document.getElementById('closeModal');
---    const modalTitle = document.getElementById('modalTitle');
---    const modalMeta = document.getElementById('modalMeta');
---    const beforeImage = document.getElementById('beforeImage');
---    const afterImage = document.getElementById('afterImage');
---
---    const slider = document.getElementById('baSlider');
---    const afterWrap = document.getElementById('afterWrap');
---    const sliderLine = document.getElementById('sliderLine');
---    const sliderHandle = document.getElementById('sliderHandle');
---
---    let isDragging = false;
---
---    function setSliderPosition(clientX) {
---      const rect = slider.getBoundingClientRect();
---      const offsetX = Math.min(Math.max(clientX - rect.left, 0), rect.width);
---      const percent = (offsetX / rect.width) * 100;
---      afterWrap.style.width = `${percent}%`;
---      sliderLine.style.left = `${percent}%`;
---      sliderHandle.style.left = `${percent}%`;
---    }
---
---    function openModal(projectId) {
---      const project = projectData[projectId];
---      if (!project) return;
---
---      modalTitle.textContent = `${project.title} | Before & After`;
---      modalMeta.textContent = project.summary;
---
---      beforeImage.src = project.before;
---      beforeImage.alt = `Before image for ${project.title}`;
---      afterImage.src = project.after;
---      afterImage.alt = `After image for ${project.title}`;
---
---      afterWrap.style.width = '50%';
---      sliderLine.style.left = '50%';
---      sliderHandle.style.left = '50%';
---
---      modal.classList.add('open');
---      modal.setAttribute('aria-hidden', 'false');
---      document.body.style.overflow = 'hidden';
---    }
---
---    function closeModal() {
---      modal.classList.remove('open');
---      modal.setAttribute('aria-hidden', 'true');
---      document.body.style.overflow = '';
---    }
---
---    document.querySelectorAll('.project-card').forEach((card) => {
---      card.addEventListener('click', () => openModal(card.dataset.project));
---      card.addEventListener('keydown', (event) => {
---        if (event.key === 'Enter' || event.key === ' ') {
---          event.preventDefault();
---          openModal(card.dataset.project);
---        }
---      });
---    });
---
---    closeModalBtn.addEventListener('click', closeModal);
---    modal.addEventListener('click', (event) => {
---      if (event.target === modal) closeModal();
---    });
---    document.addEventListener('keydown', (event) => {
---      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
---    });
---
---    slider.addEventListener('mousedown', (event) => {
---      isDragging = true;
---      setSliderPosition(event.clientX);
---    });
---
---    window.addEventListener('mousemove', (event) => {
---      if (!isDragging) return;
---      setSliderPosition(event.clientX);
---    });
---
---    window.addEventListener('mouseup', () => {
---      isDragging = false;
---    });
---
---    slider.addEventListener('touchstart', (event) => {
---      isDragging = true;
---      setSliderPosition(event.touches[0].clientX);
---    }, { passive: true });
---
---    window.addEventListener('touchmove', (event) => {
---      if (!isDragging) return;
---      setSliderPosition(event.touches[0].clientX);
---    }, { passive: true });
---
---    window.addEventListener('touchend', () => {
---      isDragging = false;
---    });
---  </script>
---</body>
---</html>
--+<!DOCTYPE html>
--+<html lang="en">
--+<head>
--+  <meta charset="UTF-8" />
--+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
--+  <title>Predictive Properties Projects | Before &amp; After Renovations</title>
--+  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations." />
--+  <meta name="keywords" content="house flipping before and after, home renovations, luxury property flips, Predictive Properties projects" />
--+  <style>
--+    :root {
--+      --bg: #0f0f13;
--+      --surface: #181a23;
--+      --text: #f3f2ee;
--+      --muted: #bbb9b2;
--+      --gold: #d4af37;
--+      --gold-soft: #f2dd9a;
--+      --navy: #141b2d;
--+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
--+      --radius: 14px;
--+      --max-width: 1120px;
--+    }
--+
--+    * { box-sizing: border-box; }
--+    html { scroll-behavior: smooth; }
--+
--+    body {
--+      margin: 0;
--+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
--+      color: var(--text);
--+      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
--+      line-height: 1.6;
--+    }
--+
--+    h1, h2, h3 {
--+      font-family: "Playfair Display", Georgia, serif;
--+      margin-top: 0;
--+    }
--+
--+    .container {
--+      width: min(92%, var(--max-width));
--+      margin: 0 auto;
--+    }
--+
--+    header {
--+      position: sticky;
--+      top: 0;
--+      background: rgba(15, 15, 19, 0.86);
--+      backdrop-filter: blur(8px);
--+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
--+      z-index: 10;
--+    }
--+
--+    .nav-wrap {
--+      padding: 0.95rem 0;
--+      display: flex;
--+      align-items: center;
--+      justify-content: space-between;
--+      gap: 1rem;
--+      flex-wrap: wrap;
--+    }
--+
--+    .logo {
--+      font-family: "Playfair Display", Georgia, serif;
--+      font-weight: 700;
--+      color: var(--gold-soft);
--+      text-decoration: none;
--+    }
--+
--+    nav { display: flex; gap: 0.8rem; }
--+
--+    nav a {
--+      color: var(--muted);
--+      text-decoration: none;
--+      padding: 0.35rem 0.65rem;
--+      border-radius: 999px;
--+      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
--+    }
--+
--+    nav a:hover,
--+    nav a:focus-visible {
--+      color: var(--gold-soft);
--+      box-shadow: inset 0 -1px 0 var(--gold);
--+      transform: translateY(-1px);
--+      outline: none;
--+    }
--+
--+    .hero {
--+      text-align: center;
--+      padding: 4.2rem 0 2.2rem;
--+    }
--+
--+    .hero h1 {
--+      font-size: clamp(2rem, 4.4vw, 3.4rem);
--+      margin-bottom: 0.8rem;
--+    }
--+
--+    .hero p {
--+      color: var(--muted);
--+      max-width: 760px;
--+      margin: 0 auto;
--+    }
--+
--+    .fade-in {
--+      opacity: 0;
--+      transform: translateY(16px);
--+      transition: opacity 0.8s ease, transform 0.8s ease;
--+    }
--+
--+    .fade-in.visible {
--+      opacity: 1;
--+      transform: translateY(0);
--+    }
--+
--+    .filters {
--+      display: flex;
--+      flex-wrap: wrap;
--+      gap: 0.6rem;
--+      margin: 1rem 0 1.2rem;
--+    }
--+
--+    .filter-btn {
--+      border: 1px solid rgba(212, 175, 55, 0.4);
--+      background: rgba(20, 27, 45, 0.5);
--+      color: var(--gold-soft);
--+      border-radius: 999px;
--+      padding: 0.4rem 0.75rem;
--+      font-weight: 600;
--+      cursor: pointer;
--+      transition: background 0.2s ease, transform 0.2s ease;
--+    }
--+
--+    .filter-btn.active,
--+    .filter-btn:hover,
--+    .filter-btn:focus-visible {
--+      background: linear-gradient(135deg, #c29f35, #ebcc6d);
--+      color: #171717;
--+      transform: translateY(-1px);
--+      outline: none;
--+    }
--+
--+    .projects-grid {
--+      display: grid;
--+      grid-template-columns: repeat(3, minmax(0, 1fr));
--+      gap: 1rem;
--+      margin-bottom: 2.2rem;
--+    }
--+
--+    .project-card {
--+      background: linear-gradient(175deg, #1b1e29, #141722);
--+      border-radius: var(--radius);
--+      border: 1px solid rgba(212, 175, 55, 0.22);
--+      box-shadow: var(--shadow);
--+      overflow: hidden;
--+      transition: transform 0.28s ease, box-shadow 0.28s ease;
--+      cursor: pointer;
--+    }
--+
--+    .project-card:hover {
--+      transform: translateY(-4px);
--+      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
--+    }
--+
--+    .project-card[hidden] {
--+      display: none;
--+    }
--+
--+    .project-thumb {
--+      width: 100%;
--+      height: 200px;
--+      object-fit: cover;
--+      display: block;
--+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
--+    }
--+
--+    .project-body { padding: 1rem; }
--+
--+    .project-meta {
--+      color: var(--muted);
--+      font-size: 0.9rem;
--+      margin-bottom: 0.4rem;
--+    }
--+
--+    .project-body h3 {
--+      color: var(--gold-soft);
--+      margin-bottom: 0.45rem;
--+    }
--+
--+    .project-body p {
--+      margin: 0 0 0.6rem;
--+      color: var(--muted);
--+    }
--+
--+    .tags {
--+      display: flex;
--+      gap: 0.4rem;
--+      flex-wrap: wrap;
--+    }
--+
--+    .tag {
--+      border: 1px solid rgba(212, 175, 55, 0.35);
--+      border-radius: 999px;
--+      padding: 0.2rem 0.55rem;
--+      font-size: 0.82rem;
--+      color: var(--gold-soft);
--+    }
--+
--+    .cta {
--+      text-align: center;
--+      padding: 1rem 0 3.5rem;
--+    }
--+
--+    .btn {
--+      display: inline-block;
--+      text-decoration: none;
--+      padding: 0.75rem 1.2rem;
--+      border-radius: 999px;
--+      border: 1px solid rgba(212, 175, 55, 0.7);
--+      background: linear-gradient(135deg, #c29f35, #ebcc6d);
--+      color: #171717;
--+      font-weight: 700;
--+      box-shadow: var(--shadow);
--+      transition: transform 0.25s ease, box-shadow 0.25s ease;
--+    }
--+
--+    .btn:hover,
--+    .btn:focus-visible {
--+      transform: translateY(-2px);
--+      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
--+      outline: none;
--+    }
--+
--+    .modal {
--+      position: fixed;
--+      inset: 0;
--+      background: rgba(7, 10, 18, 0.86);
--+      display: none;
--+      align-items: center;
--+      justify-content: center;
--+      padding: 1rem;
--+      z-index: 100;
--+    }
--+
--+    .modal.open { display: flex; }
--+
--+    .modal-panel {
--+      width: min(960px, 100%);
--+      background: linear-gradient(175deg, #131b30, #10141f);
--+      border: 1px solid rgba(212, 175, 55, 0.35);
--+      border-radius: var(--radius);
--+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
--+      overflow: hidden;
--+    }
--+
--+    .modal-header {
--+      display: flex;
--+      justify-content: space-between;
--+      align-items: center;
--+      gap: 1rem;
--+      padding: 0.9rem 1rem;
--+      background: rgba(20, 27, 45, 0.85);
--+      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
--+    }
--+
--+    .modal-header h3 {
--+      margin: 0;
--+      color: var(--gold-soft);
--+    }
--+
--+    .close-btn {
--+      border: 1px solid rgba(212, 175, 55, 0.4);
--+      border-radius: 999px;
--+      background: transparent;
--+      color: var(--gold-soft);
--+      padding: 0.35rem 0.7rem;
--+      cursor: pointer;
--+      font-weight: 600;
--+    }
--+
--+    .modal-content { padding: 1rem; }
--+
--+    .ba-slider {
--+      position: relative;
--+      width: 100%;
--+      aspect-ratio: 16 / 9;
--+      border-radius: 12px;
--+      overflow: hidden;
--+      background: #111;
--+      border: 1px solid rgba(212, 175, 55, 0.25);
--+      user-select: none;
--+      touch-action: none;
--+    }
--+
--+    .ba-image {
--+      position: absolute;
--+      inset: 0;
--+      width: 100%;
--+      height: 100%;
--+      object-fit: cover;
--+      pointer-events: none;
--+    }
--+
--+    .after-wrap {
--+      position: absolute;
--+      inset: 0;
--+      width: 50%;
--+      overflow: hidden;
--+    }
--+
--+    .slider-line {
--+      position: absolute;
--+      top: 0;
--+      bottom: 0;
--+      left: 50%;
--+      width: 2px;
--+      background: var(--gold);
--+      box-shadow: 0 0 0 1px rgba(20, 27, 45, 0.9);
--+      transform: translateX(-50%);
--+      pointer-events: none;
--+    }
--+
--+    .slider-handle {
--+      position: absolute;
--+      left: 50%;
--+      top: 50%;
--+      transform: translate(-50%, -50%);
--+      width: 38px;
--+      height: 38px;
--+      border-radius: 50%;
--+      background: var(--navy);
--+      border: 2px solid var(--gold);
--+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
--+      pointer-events: none;
--+    }
--+
--+    .label {
--+      position: absolute;
--+      top: 0.8rem;
--+      padding: 0.22rem 0.55rem;
--+      border-radius: 999px;
--+      font-size: 0.74rem;
--+      font-weight: 700;
--+      letter-spacing: 0.04em;
--+      color: #f4f3ef;
--+      background: rgba(20, 27, 45, 0.78);
--+      border: 1px solid rgba(212, 175, 55, 0.46);
--+      text-transform: uppercase;
--+    }
--+
--+    .label-before { left: 0.8rem; }
--+    .label-after { right: 0.8rem; }
--+
--+    .modal-meta {
--+      margin-top: 0.8rem;
--+      color: var(--muted);
--+      font-size: 0.95rem;
--+    }
--+
--+    footer {
--+      border-top: 1px solid rgba(212, 175, 55, 0.2);
--+      color: var(--muted);
--+      text-align: center;
--+      padding: 1.5rem 0;
--+    }
--+
--+    @media (max-width: 920px) {
--+      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
--+    }
--+
--+    @media (max-width: 640px) {
--+      .hero { padding-top: 3.4rem; }
--+      .project-thumb { height: 188px; }
--+      .projects-grid { grid-template-columns: 1fr; }
--+      .modal-content { padding: 0.75rem; }
--+    }
--+  </style>
--+</head>
--+<body>
--+  <header>
--+    <div class="container nav-wrap">
--+      <a class="logo" href="index.html">Predictive Properties</a>
--+      <nav aria-label="Primary navigation">
--+        <a href="index.html#services">Services</a>
--+        <a href="index.html#testimonials">Testimonials</a>
--+        <a href="index.html#contact">Contact</a>
--+      </nav>
--+    </div>
--+  </header>
--+
--+  <main>
--+    <section class="hero fade-in">
--+      <div class="container">
--+        <h1>Before &amp; After Project Portfolio</h1>
--+        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
--+      </div>
--+    </section>
--+
--+    <section class="container fade-in">
--+      <h2>Featured Renovation Outcomes</h2>
--+
--+      <div class="filters" role="group" aria-label="Project filters">
--+        <button class="filter-btn active" type="button" data-filter="all">All</button>
--+        <button class="filter-btn" type="button" data-filter="kitchen">Kitchen</button>
--+        <button class="filter-btn" type="button" data-filter="bathroom">Bathroom</button>
--+        <button class="filter-btn" type="button" data-filter="exterior">Exterior</button>
--+        <button class="filter-btn" type="button" data-filter="full-home">Full Home</button>
--+      </div>
--+
--+      <div class="projects-grid" id="projectsGrid">
--+        <article class="project-card" data-project="1" data-category="full-home" tabindex="0" role="button" aria-label="Open Goose Creek before and after">
--+          <img class="project-thumb" src="assets/images/goose_creek/a1.jpg" alt="After renovation view of Goose Creek" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Goose Creek · Charleston, SC</div>
--+            <h3>Goose Creek</h3>
--+            <p>Formerly a dated split-level, now a full-home luxury refresh with an entertainer kitchen, elevated baths, and polished curb appeal.</p>
--+            <div class="tags"><span class="tag">Full Home</span><span class="tag">13 Weeks</span><span class="tag">+31% Value</span></div>
--+          </div>
--+        </article>
--+
--+        <article class="project-card" data-project="2" data-category="kitchen" tabindex="0" role="button" aria-label="Open Oak Ridge kitchen before and after">
--+          <img class="project-thumb" src="assets/images/oak_ridge/a1.jpg" alt="After renovation view of Oak Ridge kitchen" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Oak Ridge · Raleigh, NC</div>
--+            <h3>Oak Ridge Kitchen Revival</h3>
--+            <p>Reworked traffic flow, oversized island install, and quartz-to-ceiling backsplash for a premium daily-use kitchen.</p>
--+            <div class="tags"><span class="tag">Kitchen</span><span class="tag">7 Weeks</span><span class="tag">+18% Value</span></div>
--+          </div>
--+        </article>
--+
--+        <article class="project-card" data-project="3" data-category="bathroom" tabindex="0" role="button" aria-label="Open Lakeview Manor bath before and after">
--+          <img class="project-thumb" src="assets/images/lakeview_manor/a1.jpg" alt="After renovation view of Lakeview Manor bathroom" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Lakeview Manor · Charlotte, NC</div>
--+            <h3>Lakeview Manor Spa Bath</h3>
--+            <p>Converted a cramped primary bath into a serene retreat with walk-in shower glazing, custom vanity, and layered lighting.</p>
--+            <div class="tags"><span class="tag">Bathroom</span><span class="tag">5 Weeks</span><span class="tag">Premium Finish</span></div>
--+          </div>
--+        </article>
--+
--+        <article class="project-card" data-project="4" data-category="exterior" tabindex="0" role="button" aria-label="Open Riverbend exterior before and after">
--+          <img class="project-thumb" src="assets/images/riverbend_estate/a1.jpg" alt="After renovation view of Riverbend Estate exterior" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Riverbend Estate · Nashville, TN</div>
--+            <h3>Riverbend Estate Exterior Lift</h3>
--+            <p>Facade modernization, architectural lighting, and layered landscaping to deliver standout first-impression impact.</p>
--+            <div class="tags"><span class="tag">Exterior</span><span class="tag">6 Weeks</span><span class="tag">Curb Appeal</span></div>
--+          </div>
--+        </article>
--+
--+        <article class="project-card" data-project="5" data-category="kitchen" tabindex="0" role="button" aria-label="Open Cedar Pointe kitchen before and after">
--+          <img class="project-thumb" src="assets/images/cedar_pointe/a1.jpg" alt="After renovation view of Cedar Pointe kitchen" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Cedar Pointe · Greenville, SC</div>
--+            <h3>Cedar Pointe Chef Kitchen</h3>
--+            <p>Designed for hosting with expanded prep zones, custom storage towers, and warm brass hardware detailing.</p>
--+            <div class="tags"><span class="tag">Kitchen</span><span class="tag">8 Weeks</span><span class="tag">High Demand</span></div>
--+          </div>
--+        </article>
--+
--+        <article class="project-card" data-project="6" data-category="full-home" tabindex="0" role="button" aria-label="Open Maple Heights full home before and after">
--+          <img class="project-thumb" src="assets/images/maple_heights/a1.jpg" alt="After renovation view of Maple Heights full home" loading="lazy" />
--+          <div class="project-body">
--+            <div class="project-meta">Maple Heights · Atlanta, GA</div>
--+            <h3>Maple Heights Reinvention</h3>
--+            <p>Comprehensive interior and exterior transformation to align layout, material quality, and market-ready presentation.</p>
--+            <div class="tags"><span class="tag">Full Home</span><span class="tag">11 Weeks</span><span class="tag">Top Offer</span></div>
--+          </div>
--+        </article>
--+      </div>
--+    </section>
--+
--+    <section class="cta fade-in">
--+      <div class="container">
--+        <h2>Start Your Next Transformation</h2>
--+        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
--+        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
--+      </div>
--+    </section>
--+  </main>
--+
--+  <div class="modal" id="projectModal" aria-hidden="true">
--+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
--+      <div class="modal-header">
--+        <h3 id="modalTitle">Project Before &amp; After</h3>
--+        <button class="close-btn" id="closeModal" type="button" aria-label="Close project modal">Close</button>
--+      </div>
--+      <div class="modal-content">
--+        <div class="ba-slider" id="baSlider">
--+          <img class="ba-image" id="beforeImage" src="assets/images/goose_creek/b1.jpg" alt="Before renovation image" />
--+          <div class="after-wrap" id="afterWrap">
--+            <img class="ba-image" id="afterImage" src="assets/images/goose_creek/a1.jpg" alt="After renovation image" />
--+          </div>
--+          <span class="label label-before">BEFORE</span>
--+          <span class="label label-after">AFTER</span>
--+          <div class="slider-line" id="sliderLine"></div>
--+          <div class="slider-handle" id="sliderHandle"></div>
--+        </div>
--+        <p class="modal-meta" id="modalMeta"></p>
--+      </div>
--+    </div>
--+  </div>
--+
--+  <footer>
--+    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
--+  </footer>
--+
--+  <script>
--+    const fadeInSections = document.querySelectorAll('.fade-in');
--+    const observer = new IntersectionObserver((entries, obs) => {
--+      entries.forEach((entry) => {
--+        if (entry.isIntersecting) {
--+          entry.target.classList.add('visible');
--+          obs.unobserve(entry.target);
--+        }
--+      });
--+    }, { threshold: 0.16 });
--+    fadeInSections.forEach((section) => observer.observe(section));
--+
--+    const projectData = {
--+      1: {
--+        title: 'Goose Creek',
--+        summary: 'Location: Charleston, SC · Full Home · 13 weeks · Before/after assets follow assets/images/{property_name}/b1.jpg + a1.jpg.',
--+        before: 'assets/images/goose_creek/b1.jpg',
--+        after: 'assets/images/goose_creek/a1.jpg'
--+      },
--+      2: {
--+        title: 'Oak Ridge Kitchen Revival',
--+        summary: 'Location: Raleigh, NC · Kitchen · 7 weeks · Structured with a dedicated image folder per project.',
--+        before: 'assets/images/oak_ridge/b1.jpg',
--+        after: 'assets/images/oak_ridge/a1.jpg'
--+      },
--+      3: {
--+        title: 'Lakeview Manor Spa Bath',
--+        summary: 'Location: Charlotte, NC · Bathroom · 5 weeks · Uses standardized project image folder naming.',
--+        before: 'assets/images/lakeview_manor/b1.jpg',
--+        after: 'assets/images/lakeview_manor/a1.jpg'
--+      },
--+      4: {
--+        title: 'Riverbend Estate Exterior Lift',
--+        summary: 'Location: Nashville, TN · Exterior · 6 weeks · Organized in assets/images/riverbend_estate/.',
--+        before: 'assets/images/riverbend_estate/b1.jpg',
--+        after: 'assets/images/riverbend_estate/a1.jpg'
--+      },
--+      5: {
--+        title: 'Cedar Pointe Chef Kitchen',
--+        summary: 'Location: Greenville, SC · Kitchen · 8 weeks · Includes standard before/after filenames.',
--+        before: 'assets/images/cedar_pointe/b1.jpg',
--+        after: 'assets/images/cedar_pointe/a1.jpg'
--+      },
--+      6: {
--+        title: 'Maple Heights Reinvention',
--+        summary: 'Location: Atlanta, GA · Full Home · 11 weeks · Consistent kebab_case folder pattern with b1/a1 files.',
--+        before: 'assets/images/maple_heights/b1.jpg',
--+        after: 'assets/images/maple_heights/a1.jpg'
--+      }
--+    };
--+
--+    const modal = document.getElementById('projectModal');
--+    const closeModalBtn = document.getElementById('closeModal');
--+    const modalTitle = document.getElementById('modalTitle');
--+    const modalMeta = document.getElementById('modalMeta');
--+    const beforeImage = document.getElementById('beforeImage');
--+    const afterImage = document.getElementById('afterImage');
--+    const slider = document.getElementById('baSlider');
--+    const afterWrap = document.getElementById('afterWrap');
--+    const sliderLine = document.getElementById('sliderLine');
--+    const sliderHandle = document.getElementById('sliderHandle');
--+
--+    let isDragging = false;
--+
--+    function setSliderPosition(clientX) {
--+      const rect = slider.getBoundingClientRect();
--+      const offsetX = Math.min(Math.max(clientX - rect.left, 0), rect.width);
--+      const percent = (offsetX / rect.width) * 100;
--+      afterWrap.style.width = `${percent}%`;
--+      sliderLine.style.left = `${percent}%`;
--+      sliderHandle.style.left = `${percent}%`;
--+    }
--+
--+    function openModal(projectId) {
--+      const project = projectData[projectId];
--+      if (!project) return;
--+
--+      modalTitle.textContent = `${project.title} | Before & After`;
--+      modalMeta.textContent = project.summary;
--+      beforeImage.src = project.before;
--+      beforeImage.alt = `Before image for ${project.title}`;
--+      afterImage.src = project.after;
--+      afterImage.alt = `After image for ${project.title}`;
--+      afterWrap.style.width = '50%';
--+      sliderLine.style.left = '50%';
--+      sliderHandle.style.left = '50%';
--+
--+      modal.classList.add('open');
--+      modal.setAttribute('aria-hidden', 'false');
--+      document.body.style.overflow = 'hidden';
--+    }
--+
--+    function closeModal() {
--+      modal.classList.remove('open');
--+      modal.setAttribute('aria-hidden', 'true');
--+      document.body.style.overflow = '';
--+    }
--+
--+    document.querySelectorAll('.project-card').forEach((card) => {
--+      card.addEventListener('click', () => openModal(card.dataset.project));
--+      card.addEventListener('keydown', (event) => {
--+        if (event.key === 'Enter' || event.key === ' ') {
--+          event.preventDefault();
--+          openModal(card.dataset.project);
--+        }
--+      });
--+    });
--+
--+    closeModalBtn.addEventListener('click', closeModal);
--+    modal.addEventListener('click', (event) => {
--+      if (event.target === modal) closeModal();
--+    });
--+    document.addEventListener('keydown', (event) => {
--+      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
--+    });
--+
--+    slider.addEventListener('mousedown', (event) => {
--+      isDragging = true;
--+      setSliderPosition(event.clientX);
--+    });
--+
--+    window.addEventListener('mousemove', (event) => {
--+      if (!isDragging) return;
--+      setSliderPosition(event.clientX);
--+    });
--+
--+    window.addEventListener('mouseup', () => {
--+      isDragging = false;
--+    });
--+
--+    slider.addEventListener('touchstart', (event) => {
--+      isDragging = true;
--+      setSliderPosition(event.touches[0].clientX);
--+    }, { passive: true });
--+
--+    window.addEventListener('touchmove', (event) => {
--+      if (!isDragging) return;
--+      setSliderPosition(event.touches[0].clientX);
--+    }, { passive: true });
--+
--+    window.addEventListener('touchend', () => {
--+      isDragging = false;
--+    });
--+
--+    const filterButtons = document.querySelectorAll('.filter-btn');
--+    const projectCards = document.querySelectorAll('.project-card');
--+
--+    filterButtons.forEach((button) => {
--+      button.addEventListener('click', () => {
--+        const selected = button.dataset.filter;
--+
--+        filterButtons.forEach((btn) => btn.classList.remove('active'));
--+        button.classList.add('active');
--+
--+        projectCards.forEach((card) => {
--+          const category = card.dataset.category;
--+          card.hidden = !(selected === 'all' || selected === category);
--+        });
--+      });
--+    });
--+  </script>
--+</body>
--+</html>
+@@ -1,881 +1,668 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-  <meta charset="UTF-8" />
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-  <title>Predictive Properties Projects | Before & After Renovations</title>
+-  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations [your city]." />
+-  <meta name="keywords" content="house flipping before and after, home renovations [your city], luxury property flips, Predictive Properties projects" />
+-  <style>
+-    :root {
+-      --bg: #0f0f13;
+-      --surface: #181a23;
+-      --text: #f3f2ee;
+-      --muted: #bbb9b2;
+-      --gold: #d4af37;
+-      --gold-soft: #f2dd9a;
+-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+-      --radius: 14px;
+-      --max-width: 1120px;
+-    }
+-
+-    * { box-sizing: border-box; }
+-    html { scroll-behavior: smooth; }
+-
+-    body {
+-      margin: 0;
+-      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+-      color: var(--text);
+-      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
+-      line-height: 1.6;
+-    }
+-
+-    h1, h2, h3 {
+-      font-family: "Playfair Display", Georgia, serif;
+-      margin-top: 0;
+-    }
+-
+-    .container {
+-      width: min(92%, var(--max-width));
+-      margin: 0 auto;
+-    }
+-
+-    header {
+-      position: sticky;
+-      top: 0;
+-      background: rgba(15, 15, 19, 0.86);
+-      backdrop-filter: blur(8px);
+-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+-      z-index: 10;
+-    }
+-
+-    .nav-wrap {
+-      padding: 0.95rem 0;
+-      display: flex;
+-      align-items: center;
+-      justify-content: space-between;
+-      gap: 1rem;
+-      flex-wrap: wrap;
+-    }
+-
+-    .logo {
+-      font-family: "Playfair Display", Georgia, serif;
+-      font-weight: 700;
+-      color: var(--gold-soft);
+-      text-decoration: none;
+-    }
+-
+-    nav { display: flex; gap: 0.8rem; }
+-
+-    nav a {
+-      color: var(--muted);
+-      text-decoration: none;
+-      padding: 0.35rem 0.65rem;
+-      border-radius: 999px;
+-      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+-    }
+-
+-    nav a:hover,
+-    nav a:focus-visible {
+-      color: var(--gold-soft);
+-      box-shadow: inset 0 -1px 0 var(--gold);
+-      transform: translateY(-1px);
+-      outline: none;
+-    }
+-
+-    .hero {
+-      text-align: center;
+-      padding: 4.2rem 0 3rem;
+-    }
+-
+-    .hero h1 {
+-      font-size: clamp(2rem, 4.4vw, 3.4rem);
+-      margin-bottom: 0.8rem;
+-    }
+-
+-    .hero p { color: var(--muted); max-width: 760px; margin: 0 auto; }
+-
+-    .fade-in {
+-      opacity: 0;
+-      transform: translateY(16px);
+-      transition: opacity 0.8s ease, transform 0.8s ease;
+-    }
+-
+-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+-
+-    .projects-grid {
+-      display: grid;
+-      grid-template-columns: repeat(3, minmax(0, 1fr));
+-      gap: 1rem;
+-      padding-bottom: 3rem;
+-    }
+-
+-    .project-card {
+-      background: linear-gradient(175deg, #1b1e29, #141722);
+-      border-radius: var(--radius);
+-      border: 1px solid rgba(212, 175, 55, 0.22);
+-      box-shadow: var(--shadow);
+-      overflow: hidden;
+-      transition: transform 0.28s ease, box-shadow 0.28s ease;
+-    }
+-
+-    .project-card:hover {
+-      transform: translateY(-4px);
+-      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
+-    }
+-
+-    .project-body { padding: 1rem; }
+-    .project-body h3 { color: var(--gold-soft); margin-bottom: 0.45rem; }
+-    .project-body p { margin: 0 0 0.6rem; color: var(--muted); }
+-
+-    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+-
+-    .tag {
+-      border: 1px solid rgba(212, 175, 55, 0.35);
+-      border-radius: 999px;
+-      padding: 0.2rem 0.55rem;
+-      font-size: 0.82rem;
+-      color: var(--gold-soft);
+-    }
+-
+-    .placeholder {
+-      min-height: 170px;
+-      background: linear-gradient(135deg, #262a39, #1a1d29);
+-      display: grid;
+-      place-items: center;
+-      font-family: "Playfair Display", Georgia, serif;
+-      color: rgba(255,255,255,0.86);
+-      text-align: center;
+-      padding: 1rem;
+-    }
+-
+-    .cta {
+-      text-align: center;
+-      padding: 2rem 0 3.5rem;
+-    }
+-
+-    .btn {
+-      display: inline-block;
+-      text-decoration: none;
+-      padding: 0.75rem 1.2rem;
+-      border-radius: 999px;
+-      border: 1px solid rgba(212, 175, 55, 0.7);
+-      background: linear-gradient(135deg, #c29f35, #ebcc6d);
+-      color: #171717;
+-      font-weight: 700;
+-      box-shadow: var(--shadow);
+-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+-    }
+-
+-    .btn:hover,
+-    .btn:focus-visible {
+-      transform: translateY(-2px);
+-      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
+-      outline: none;
+-    }
+-
+-    footer {
+-      border-top: 1px solid rgba(212, 175, 55, 0.2);
+-      color: var(--muted);
+-      text-align: center;
+-      padding: 1.5rem 0;
+-    }
+-
+-    @media (max-width: 920px) {
+-      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+-    }
+-
+-    @media (max-width: 640px) {
+-      .projects-grid { grid-template-columns: 1fr; }
+-      .hero { padding-top: 3.4rem; }
+-    }
+-  </style>
+-</head>
+-<body>
+-  <header>
+-    <div class="container nav-wrap">
+-      <a class="logo" href="index.html">Predictive Properties</a>
+-      <nav aria-label="Primary navigation">
+-        <a href="index.html#services">Services</a>
+-        <a href="index.html#testimonials">Testimonials</a>
+-        <a href="index.html#contact">Contact</a>
+-      </nav>
+-    </div>
+-  </header>
+-
+-  <main>
+-    <section class="hero fade-in">
+-      <div class="container">
+-        <h1>Before &amp; After Project Portfolio</h1>
+-        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
+-      </div>
+-    </section>
+-
+-    <section class="container fade-in">
+-      <h2>Featured Renovation Outcomes</h2>
+-      <div class="projects-grid">
+-        <article class="project-card">
+-          <div class="placeholder">Downtown Revival<br/>Before &amp; After</div>
+-          <div class="project-body">
+-            <h3>Urban Luxury Refresh</h3>
+-            <p>Modernized kitchen and bath suite with premium fixtures and warm natural finishes.</p>
+-            <div class="tags"><span class="tag">ROI Focused</span><span class="tag">8 Weeks</span></div>
+-          </div>
+-        </article>
+-
+-        <article class="project-card">
+-          <div class="placeholder">Family Home Reinvention<br/>Before &amp; After</div>
+-          <div class="project-body">
+-            <h3>Suburban Full Remodel</h3>
+-            <p>Open-concept redesign, custom millwork, and curb appeal updates that raised buyer demand.</p>
+-            <div class="tags"><span class="tag">Top Offer</span><span class="tag">10 Weeks</span></div>
+-          </div>
+-        </article>
+-
+-        <article class="project-card">
+-          <div class="placeholder">Classic to Contemporary<br/>Before &amp; After</div>
+-          <div class="project-body">
+-            <h3>Executive-Style Upgrade</h3>
+-            <p>Elevated finishes, refined lighting, and layout optimization for luxury listing presentation.</p>
+-            <div class="tags"><span class="tag">High-End</span><span class="tag">7 Weeks</span></div>
+-          </div>
+-        </article>
+-      </div>
+-    </section>
+-
+-    <section class="cta fade-in">
+-      <div class="container">
+-        <h2>Start Your Next Transformation</h2>
+-        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
+-        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
+-      </div>
+-    </section>
+-  </main>
+-
+-  <footer>
+-    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
+-  </footer>
+-
+-  <script>
+-    const fadeInSections = document.querySelectorAll('.fade-in');
+-    const observer = new IntersectionObserver((entries, obs) => {
+-      entries.forEach((entry) => {
+-        if (entry.isIntersecting) {
+-          entry.target.classList.add('visible');
+-          obs.unobserve(entry.target);
+-        }
+-      });
+-    }, { threshold: 0.16 });
+-
+-    fadeInSections.forEach((section) => observer.observe(section));
+-  </script>
+-</body>
+-</html>
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-  <meta charset="UTF-8" />
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-  <title>Predictive Properties Projects | Before &amp; After Renovations</title>
+-  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations [your city]." />
+-  <meta name="keywords" content="house flipping before and after, home renovations [your city], luxury property flips, Predictive Properties projects" />
+-  <style>
+-    :root {
+-      --bg: #0f0f13;
+-      --surface: #181a23;
+-      --text: #f3f2ee;
+-      --muted: #bbb9b2;
+-      --gold: #d4af37;
+-      --gold-soft: #f2dd9a;
+-      --navy: #141b2d;
+-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+-      --radius: 14px;
+-      --max-width: 1120px;
+-    }
+-
+-    * { box-sizing: border-box; }
+-    html { scroll-behavior: smooth; }
+-
+-    body {
+-      margin: 0;
+-      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+-      color: var(--text);
+-      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
+-      line-height: 1.6;
+-    }
+-
+-    h1, h2, h3 {
+-      font-family: "Playfair Display", Georgia, serif;
+-      margin-top: 0;
+-    }
+-
+-    .container {
+-      width: min(92%, var(--max-width));
+-      margin: 0 auto;
+-    }
+-
+-    header {
+-      position: sticky;
+-      top: 0;
+-      background: rgba(15, 15, 19, 0.86);
+-      backdrop-filter: blur(8px);
+-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+-      z-index: 10;
+-    }
+-
+-    .nav-wrap {
+-      padding: 0.95rem 0;
+-      display: flex;
+-      align-items: center;
+-      justify-content: space-between;
+-      gap: 1rem;
+-      flex-wrap: wrap;
+-    }
+-
+-    .logo {
+-      font-family: "Playfair Display", Georgia, serif;
+-      font-weight: 700;
+-      color: var(--gold-soft);
+-      text-decoration: none;
+-    }
+-
+-    nav { display: flex; gap: 0.8rem; }
+-
+-    nav a {
+-      color: var(--muted);
+-      text-decoration: none;
+-      padding: 0.35rem 0.65rem;
+-      border-radius: 999px;
+-      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+-    }
+-
+-    nav a:hover,
+-    nav a:focus-visible {
+-      color: var(--gold-soft);
+-      box-shadow: inset 0 -1px 0 var(--gold);
+-      transform: translateY(-1px);
+-      outline: none;
+-    }
+-
+-    .hero {
+-      text-align: center;
+-      padding: 4.2rem 0 2.2rem;
+-    }
+-
+-    .hero h1 {
+-      font-size: clamp(2rem, 4.4vw, 3.4rem);
+-      margin-bottom: 0.8rem;
+-    }
+-
+-    .hero p { color: var(--muted); max-width: 760px; margin: 0 auto; }
+-
+-    .fade-in {
+-      opacity: 0;
+-      transform: translateY(16px);
+-      transition: opacity 0.8s ease, transform 0.8s ease;
+-    }
+-
+-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+-
+-    .project-group {
+-      margin-bottom: 2.2rem;
+-    }
+-
+-    .group-title {
+-      margin-bottom: 0.9rem;
+-      color: var(--gold-soft);
+-      letter-spacing: 0.03em;
+-    }
+-
+-    .projects-grid {
+-      display: grid;
+-      grid-template-columns: repeat(2, minmax(0, 1fr));
+-      gap: 1rem;
+-    }
+-
+-    .project-card {
+-      background: linear-gradient(175deg, #1b1e29, #141722);
+-      border-radius: var(--radius);
+-      border: 1px solid rgba(212, 175, 55, 0.22);
+-      box-shadow: var(--shadow);
+-      overflow: hidden;
+-      transition: transform 0.28s ease, box-shadow 0.28s ease;
+-      cursor: pointer;
+-    }
+-
+-    .project-card:hover {
+-      transform: translateY(-4px);
+-      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
+-    }
+-
+-    .project-thumb {
+-      width: 100%;
+-      height: 200px;
+-      object-fit: cover;
+-      display: block;
+-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+-    }
+-
+-    .project-body { padding: 1rem; }
+-    .project-body h3 { color: var(--gold-soft); margin-bottom: 0.45rem; }
+-    .project-body p { margin: 0 0 0.6rem; color: var(--muted); }
+-
+-    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+-
+-    .tag {
+-      border: 1px solid rgba(212, 175, 55, 0.35);
+-      border-radius: 999px;
+-      padding: 0.2rem 0.55rem;
+-      font-size: 0.82rem;
+-      color: var(--gold-soft);
+-    }
+-
+-    .cta {
+-      text-align: center;
+-      padding: 2rem 0 3.5rem;
+-    }
+-
+-    .btn {
+-      display: inline-block;
+-      text-decoration: none;
+-      padding: 0.75rem 1.2rem;
+-      border-radius: 999px;
+-      border: 1px solid rgba(212, 175, 55, 0.7);
+-      background: linear-gradient(135deg, #c29f35, #ebcc6d);
+-      color: #171717;
+-      font-weight: 700;
+-      box-shadow: var(--shadow);
+-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+-    }
+-
+-    .btn:hover,
+-    .btn:focus-visible {
+-      transform: translateY(-2px);
+-      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
+-      outline: none;
+-    }
+-
+-    .modal {
+-      position: fixed;
+-      inset: 0;
+-      background: rgba(7, 10, 18, 0.86);
+-      display: none;
+-      align-items: center;
+-      justify-content: center;
+-      padding: 1rem;
+-      z-index: 100;
+-    }
+-
+-    .modal.open { display: flex; }
+-
+-    .modal-panel {
+-      width: min(960px, 100%);
+-      background: linear-gradient(175deg, #131b30, #10141f);
+-      border: 1px solid rgba(212, 175, 55, 0.35);
+-      border-radius: var(--radius);
+-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
+-      overflow: hidden;
+-    }
+-
+-    .modal-header {
+-      display: flex;
+-      justify-content: space-between;
+-      align-items: center;
+-      gap: 1rem;
+-      padding: 0.9rem 1rem;
+-      background: rgba(20, 27, 45, 0.85);
+-      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+-    }
+-
+-    .modal-header h3 { margin: 0; color: var(--gold-soft); }
+-
+-    .close-btn {
+-      border: 1px solid rgba(212, 175, 55, 0.4);
+-      border-radius: 999px;
+-      background: transparent;
+-      color: var(--gold-soft);
+-      padding: 0.35rem 0.7rem;
+-      cursor: pointer;
+-      font-weight: 600;
+-    }
+-
+-    .modal-content { padding: 1rem; }
+-
+-    .ba-slider {
+-      position: relative;
+-      width: 100%;
+-      aspect-ratio: 16 / 9;
+-      border-radius: 12px;
+-      overflow: hidden;
+-      background: #111;
+-      border: 1px solid rgba(212, 175, 55, 0.25);
+-      user-select: none;
+-      touch-action: none;
+-    }
+-
+-    .ba-image {
+-      position: absolute;
+-      inset: 0;
+-      width: 100%;
+-      height: 100%;
+-      object-fit: cover;
+-      pointer-events: none;
+-    }
+-
+-    .after-wrap {
+-      position: absolute;
+-      inset: 0;
+-      width: 50%;
+-      overflow: hidden;
+-    }
+-
+-    .slider-line {
+-      position: absolute;
+-      top: 0;
+-      bottom: 0;
+-      left: 50%;
+-      width: 2px;
+-      background: var(--gold);
+-      box-shadow: 0 0 0 1px rgba(20, 27, 45, 0.9);
+-      transform: translateX(-50%);
+-      pointer-events: none;
+-    }
+-
+-    .slider-handle {
+-      position: absolute;
+-      left: 50%;
+-      top: 50%;
+-      transform: translate(-50%, -50%);
+-      width: 38px;
+-      height: 38px;
+-      border-radius: 50%;
+-      background: var(--navy);
+-      border: 2px solid var(--gold);
+-      box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+-      pointer-events: none;
+-    }
+-
+-    .label {
+-      position: absolute;
+-      top: 0.8rem;
+-      padding: 0.22rem 0.55rem;
+-      border-radius: 999px;
+-      font-size: 0.74rem;
+-      font-weight: 700;
+-      letter-spacing: 0.04em;
+-      color: #f4f3ef;
+-      background: rgba(20, 27, 45, 0.78);
+-      border: 1px solid rgba(212, 175, 55, 0.46);
+-      text-transform: uppercase;
+-    }
+-
+-    .label-before { left: 0.8rem; }
+-    .label-after { right: 0.8rem; }
+-
+-    .modal-meta {
+-      margin-top: 0.8rem;
+-      color: var(--muted);
+-      font-size: 0.95rem;
+-    }
+-
+-    footer {
+-      border-top: 1px solid rgba(212, 175, 55, 0.2);
+-      color: var(--muted);
+-      text-align: center;
+-      padding: 1.5rem 0;
+-    }
+-
+-    @media (max-width: 920px) {
+-      .projects-grid { grid-template-columns: 1fr; }
+-    }
+-
+-    @media (max-width: 640px) {
+-      .hero { padding-top: 3.4rem; }
+-      .project-thumb { height: 188px; }
+-      .modal-content { padding: 0.75rem; }
+-    }
+-  </style>
+-</head>
+-<body>
+-  <header>
+-    <div class="container nav-wrap">
+-      <a class="logo" href="index.html">Predictive Properties</a>
+-      <nav aria-label="Primary navigation">
+-        <a href="index.html#services">Services</a>
+-        <a href="index.html#testimonials">Testimonials</a>
+-        <a href="index.html#contact">Contact</a>
+-      </nav>
+-    </div>
+-  </header>
+-
+-  <main>
+-    <section class="hero fade-in">
+-      <div class="container">
+-        <h1>Before &amp; After Project Portfolio</h1>
+-        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
+-      </div>
+-    </section>
+-
+-    <section class="container fade-in">
+-      <h2>Featured Renovation Outcomes</h2>
+-
+-      <div class="project-group">
+-        <h3 class="group-title">Kitchen</h3>
+-        <div class="projects-grid">
+-          <article class="project-card" data-project="1" tabindex="0" role="button" aria-label="Open kitchen project 1 before and after">
+-            <img class="project-thumb" src="assets/images/a01.jpg" alt="After renovation view of kitchen project 1" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Modern Entertainer Kitchen</h3>
+-              <p>Expanded prep space, premium cabinetry, and warm brass accents for an upscale yet livable finish.</p>
+-              <div class="tags"><span class="tag">Kitchen</span><span class="tag">6 Weeks</span></div>
+-            </div>
+-          </article>
+-
+-          <article class="project-card" data-project="2" tabindex="0" role="button" aria-label="Open kitchen project 2 before and after">
+-            <img class="project-thumb" src="assets/images/a02.jpg" alt="After renovation view of kitchen project 2" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Bright Open-Concept Kitchen</h3>
+-              <p>Removed visual clutter and added a generous island to improve flow, storage, and day-to-day function.</p>
+-              <div class="tags"><span class="tag">Kitchen</span><span class="tag">8 Weeks</span></div>
+-            </div>
+-          </article>
+-        </div>
+-      </div>
+-
+-      <div class="project-group">
+-        <h3 class="group-title">Bathroom</h3>
+-        <div class="projects-grid">
+-          <article class="project-card" data-project="3" tabindex="0" role="button" aria-label="Open bathroom project 1 before and after">
+-            <img class="project-thumb" src="assets/images/a03.jpg" alt="After renovation view of bathroom project 1" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Spa-Inspired Primary Bath</h3>
+-              <p>Converted dated fixtures to a clean, spa-like retreat with layered lighting and oversized tile.</p>
+-              <div class="tags"><span class="tag">Bathroom</span><span class="tag">4 Weeks</span></div>
+-            </div>
+-          </article>
+-
+-          <article class="project-card" data-project="4" tabindex="0" role="button" aria-label="Open bathroom project 2 before and after">
+-            <img class="project-thumb" src="assets/images/a04.jpg" alt="After renovation view of bathroom project 2" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Guest Bath Style Upgrade</h3>
+-              <p>Introduced modern vanity lines, high-contrast materials, and improved storage in a compact footprint.</p>
+-              <div class="tags"><span class="tag">Bathroom</span><span class="tag">3 Weeks</span></div>
+-            </div>
+-          </article>
+-        </div>
+-      </div>
+-
+-      <div class="project-group">
+-        <h3 class="group-title">Exterior</h3>
+-        <div class="projects-grid">
+-          <article class="project-card" data-project="5" tabindex="0" role="button" aria-label="Open exterior project before and after">
+-            <img class="project-thumb" src="assets/images/a05.jpg" alt="After renovation view of exterior project" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Luxury Curb Appeal Refresh</h3>
+-              <p>Updated facade finishes, front approach, and landscape structure to strengthen first impressions.</p>
+-              <div class="tags"><span class="tag">Exterior</span><span class="tag">5 Weeks</span></div>
+-            </div>
+-          </article>
+-        </div>
+-      </div>
+-
+-      <div class="project-group">
+-        <h3 class="group-title">Full Home Renovation</h3>
+-        <div class="projects-grid">
+-          <article class="project-card" data-project="6" tabindex="0" role="button" aria-label="Open full home renovation project before and after">
+-            <img class="project-thumb" src="assets/images/a06.jpg" alt="After renovation view of full home renovation project" loading="lazy" />
+-            <div class="project-body">
+-              <h3>Complete Home Reinvention</h3>
+-              <p>Whole-home transformation across kitchen, bath, living spaces, and exterior for maximum resale value.</p>
+-              <div class="tags"><span class="tag">Full Home</span><span class="tag">12 Weeks</span></div>
+-            </div>
+-          </article>
+-        </div>
+-      </div>
+-    </section>
+-
+-    <section class="cta fade-in">
+-      <div class="container">
+-        <h2>Start Your Next Transformation</h2>
+-        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
+-        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
+-      </div>
+-    </section>
+-  </main>
+-
+-  <div class="modal" id="projectModal" aria-hidden="true">
+-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+-      <div class="modal-header">
+-        <h3 id="modalTitle">Project Before &amp; After</h3>
+-        <button class="close-btn" id="closeModal" type="button" aria-label="Close project modal">Close</button>
+-      </div>
+-      <div class="modal-content">
+-        <div class="ba-slider" id="baSlider">
+-          <img class="ba-image" id="beforeImage" src="assets/images/b01.jpg" alt="Before renovation image" />
+-          <div class="after-wrap" id="afterWrap">
+-            <img class="ba-image" id="afterImage" src="assets/images/a01.jpg" alt="After renovation image" />
+-          </div>
+-          <span class="label label-before">BEFORE</span>
+-          <span class="label label-after">AFTER</span>
+-          <div class="slider-line" id="sliderLine"></div>
+-          <div class="slider-handle" id="sliderHandle"></div>
+-        </div>
+-        <p class="modal-meta" id="modalMeta"></p>
+-      </div>
+-    </div>
+-  </div>
+-
+-  <footer>
+-    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
+-  </footer>
+-
+-  <script>
+-    const fadeInSections = document.querySelectorAll('.fade-in');
+-    const observer = new IntersectionObserver((entries, obs) => {
+-      entries.forEach((entry) => {
+-        if (entry.isIntersecting) {
+-          entry.target.classList.add('visible');
+-          obs.unobserve(entry.target);
+-        }
+-      });
+-    }, { threshold: 0.16 });
+-
+-    fadeInSections.forEach((section) => observer.observe(section));
+-
+-    const projectData = {
+-      1: {
+-        title: 'Modern Entertainer Kitchen',
+-        summary: 'Kitchen renovation with improved flow, larger prep zones, and premium materials.',
+-        before: 'assets/images/b01.jpg',
+-        after: 'assets/images/a01.jpg'
+-      },
+-      2: {
+-        title: 'Bright Open-Concept Kitchen',
+-        summary: 'Kitchen transformation focused on open sightlines, natural light, and better storage.',
+-        before: 'assets/images/b02.jpg',
+-        after: 'assets/images/a02.jpg'
+-      },
+-      3: {
+-        title: 'Spa-Inspired Primary Bath',
+-        summary: 'Bathroom refresh with modern finishes and a high-end, calming aesthetic.',
+-        before: 'assets/images/b03.jpg',
+-        after: 'assets/images/a03.jpg'
+-      },
+-      4: {
+-        title: 'Guest Bath Style Upgrade',
+-        summary: 'Bathroom redesign delivering a cleaner layout and stronger visual impact.',
+-        before: 'assets/images/b04.jpg',
+-        after: 'assets/images/a04.jpg'
+-      },
+-      5: {
+-        title: 'Luxury Curb Appeal Refresh',
+-        summary: 'Exterior updates designed to elevate first impressions and buyer confidence.',
+-        before: 'assets/images/b05.jpg',
+-        after: 'assets/images/a05.jpg'
+-      },
+-      6: {
+-        title: 'Complete Home Reinvention',
+-        summary: 'Full-home renovation integrating kitchen, bath, interior living, and exterior upgrades.',
+-        before: 'assets/images/b06.jpg',
+-        after: 'assets/images/a06.jpg'
+-      }
+-    };
+-
+-    const modal = document.getElementById('projectModal');
+-    const closeModalBtn = document.getElementById('closeModal');
+-    const modalTitle = document.getElementById('modalTitle');
+-    const modalMeta = document.getElementById('modalMeta');
+-    const beforeImage = document.getElementById('beforeImage');
+-    const afterImage = document.getElementById('afterImage');
+-
+-    const slider = document.getElementById('baSlider');
+-    const afterWrap = document.getElementById('afterWrap');
+-    const sliderLine = document.getElementById('sliderLine');
+-    const sliderHandle = document.getElementById('sliderHandle');
+-
+-    let isDragging = false;
+-
+-    function setSliderPosition(clientX) {
+-      const rect = slider.getBoundingClientRect();
+-      const offsetX = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+-      const percent = (offsetX / rect.width) * 100;
+-      afterWrap.style.width = `${percent}%`;
+-      sliderLine.style.left = `${percent}%`;
+-      sliderHandle.style.left = `${percent}%`;
+-    }
+-
+-    function openModal(projectId) {
+-      const project = projectData[projectId];
+-      if (!project) return;
+-
+-      modalTitle.textContent = `${project.title} | Before & After`;
+-      modalMeta.textContent = project.summary;
+-
+-      beforeImage.src = project.before;
+-      beforeImage.alt = `Before image for ${project.title}`;
+-      afterImage.src = project.after;
+-      afterImage.alt = `After image for ${project.title}`;
+-
+-      afterWrap.style.width = '50%';
+-      sliderLine.style.left = '50%';
+-      sliderHandle.style.left = '50%';
+-
+-      modal.classList.add('open');
+-      modal.setAttribute('aria-hidden', 'false');
+-      document.body.style.overflow = 'hidden';
+-    }
+-
+-    function closeModal() {
+-      modal.classList.remove('open');
+-      modal.setAttribute('aria-hidden', 'true');
+-      document.body.style.overflow = '';
+-    }
+-
+-    document.querySelectorAll('.project-card').forEach((card) => {
+-      card.addEventListener('click', () => openModal(card.dataset.project));
+-      card.addEventListener('keydown', (event) => {
+-        if (event.key === 'Enter' || event.key === ' ') {
+-          event.preventDefault();
+-          openModal(card.dataset.project);
+-        }
+-      });
+-    });
+-
+-    closeModalBtn.addEventListener('click', closeModal);
+-    modal.addEventListener('click', (event) => {
+-      if (event.target === modal) closeModal();
+-    });
+-    document.addEventListener('keydown', (event) => {
+-      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
+-    });
+-
+-    slider.addEventListener('mousedown', (event) => {
+-      isDragging = true;
+-      setSliderPosition(event.clientX);
+-    });
+-
+-    window.addEventListener('mousemove', (event) => {
+-      if (!isDragging) return;
+-      setSliderPosition(event.clientX);
+-    });
+-
+-    window.addEventListener('mouseup', () => {
+-      isDragging = false;
+-    });
+-
+-    slider.addEventListener('touchstart', (event) => {
+-      isDragging = true;
+-      setSliderPosition(event.touches[0].clientX);
+-    }, { passive: true });
+-
+-    window.addEventListener('touchmove', (event) => {
+-      if (!isDragging) return;
+-      setSliderPosition(event.touches[0].clientX);
+-    }, { passive: true });
+-
+-    window.addEventListener('touchend', () => {
+-      isDragging = false;
+-    });
+-  </script>
+-</body>
+-</html>
 +<!DOCTYPE html>
-+<html lang="en" class="scroll-smooth">
++<html lang="en">
 +<head>
 +  <meta charset="UTF-8" />
 +  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-+  <title>Predictive Properties Projects | Luxury Before &amp; After Transformations</title>
-+  <meta name="description" content="Explore Predictive Properties luxury house flipping projects, before-and-after renovations, ROI outcomes, and premium transformation details." />
-+  <meta name="keywords" content="luxury house flipping, before and after renovations, home renovation portfolio, Predictive Properties projects" />
-+  <meta name="theme-color" content="#0A2540" />
-+
-+  <link rel="preconnect" href="https://fonts.googleapis.com" />
-+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-+  <script src="https://cdn.tailwindcss.com"></script>
-+  <script>
-+    tailwind.config = {
-+      theme: {
-+        extend: {
-+          colors: {
-+            navy: '#0A2540',
-+            gold: '#D4AF37',
-+            ink: '#0E1C2B'
-+          },
-+          boxShadow: {
-+            luxe: '0 16px 40px rgba(10, 37, 64, 0.35)',
-+            glow: '0 10px 35px rgba(212, 175, 55, 0.23)'
-+          },
-+          fontFamily: {
-+            display: ['Playfair Display', 'serif'],
-+            body: ['Inter', 'sans-serif']
-+          }
-+        }
-+      }
-+    };
-+  </script>
++  <title>Predictive Properties Projects | Before &amp; After Renovations</title>
++  <meta name="description" content="Explore Predictive Properties house flipping before and after project gallery and luxury home renovations." />
++  <meta name="keywords" content="house flipping before and after, home renovations, luxury property flips, Predictive Properties projects" />
 +  <style>
++    :root {
++      --bg: #0f0f13;
++      --surface: #181a23;
++      --text: #f3f2ee;
++      --muted: #bbb9b2;
++      --gold: #d4af37;
++      --gold-soft: #f2dd9a;
++      --navy: #141b2d;
++      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
++      --radius: 14px;
++      --max-width: 1120px;
++    }
++
++    * { box-sizing: border-box; }
++    html { scroll-behavior: smooth; }
++
 +    body {
-+      font-family: Inter, sans-serif;
-+      background: radial-gradient(circle at top, #173454 0%, #0A2540 46%, #07192c 100%);
++      margin: 0;
++      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
++      color: var(--text);
++      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
++      line-height: 1.6;
 +    }
 +
-+    .glass {
-+      background: linear-gradient(140deg, rgba(10,37,64,.95), rgba(14,28,43,.88));
-+      border: 1px solid rgba(212,175,55,.22);
++    h1, h2, h3 {
++      font-family: "Playfair Display", Georgia, serif;
++      margin-top: 0;
++    }
++
++    .container {
++      width: min(92%, var(--max-width));
++      margin: 0 auto;
++    }
++
++    header {
++      position: sticky;
++      top: 0;
++      background: rgba(15, 15, 19, 0.86);
 +      backdrop-filter: blur(8px);
++      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
++      z-index: 10;
 +    }
 +
-+    .project-card {
-+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, opacity .35s ease;
++    .nav-wrap {
++      padding: 0.95rem 0;
++      display: flex;
++      align-items: center;
++      justify-content: space-between;
++      gap: 1rem;
++      flex-wrap: wrap;
 +    }
 +
-+    .project-card:hover {
-+      transform: translateY(-6px);
-+      border-color: rgba(212,175,55,.7);
-+      box-shadow: 0 16px 34px rgba(6, 16, 28, 0.45), 0 8px 24px rgba(212, 175, 55, 0.16);
++    .logo {
++      font-family: "Playfair Display", Georgia, serif;
++      font-weight: 700;
++      color: var(--gold-soft);
++      text-decoration: none;
++    }
++
++    nav { display: flex; gap: 0.8rem; }
++
++    nav a {
++      color: var(--muted);
++      text-decoration: none;
++      padding: 0.35rem 0.65rem;
++      border-radius: 999px;
++      transition: color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
++    }
++
++    nav a:hover,
++    nav a:focus-visible {
++      color: var(--gold-soft);
++      box-shadow: inset 0 -1px 0 var(--gold);
++      transform: translateY(-1px);
++      outline: none;
++    }
++
++    .hero {
++      text-align: center;
++      padding: 4.2rem 0 2.2rem;
++    }
++
++    .hero h1 {
++      font-size: clamp(2rem, 4.4vw, 3.4rem);
++      margin-bottom: 0.8rem;
++    }
++
++    .hero p {
++      color: var(--muted);
++      max-width: 760px;
++      margin: 0 auto;
 +    }
 +
 +    .fade-in {
 +      opacity: 0;
-+      transform: translateY(24px) scale(.98);
-+      transition: opacity .8s ease, transform .8s ease;
-+      will-change: opacity, transform;
++      transform: translateY(16px);
++      transition: opacity 0.8s ease, transform 0.8s ease;
 +    }
 +
 +    .fade-in.visible {
 +      opacity: 1;
-+      transform: translateY(0) scale(1);
++      transform: translateY(0);
 +    }
 +
-+    .before-after-wrap {
-+      position: relative;
++    .filters {
++      display: flex;
++      flex-wrap: wrap;
++      gap: 0.6rem;
++      margin: 1rem 0 1.2rem;
++    }
++
++    .filter-btn {
++      border: 1px solid rgba(212, 175, 55, 0.4);
++      background: rgba(20, 27, 45, 0.5);
++      color: var(--gold-soft);
++      border-radius: 999px;
++      padding: 0.4rem 0.75rem;
++      font-weight: 600;
++      cursor: pointer;
++      transition: background 0.2s ease, transform 0.2s ease;
++    }
++
++    .filter-btn.active,
++    .filter-btn:hover,
++    .filter-btn:focus-visible {
++      background: linear-gradient(135deg, #c29f35, #ebcc6d);
++      color: #171717;
++      transform: translateY(-1px);
++      outline: none;
++    }
++
++    .projects-grid {
++      display: grid;
++      grid-template-columns: repeat(3, minmax(0, 1fr));
++      gap: 1rem;
++      margin-bottom: 2.2rem;
++    }
++
++    .project-card {
++      background: linear-gradient(175deg, #1b1e29, #141722);
++      border-radius: var(--radius);
++      border: 1px solid rgba(212, 175, 55, 0.22);
++      box-shadow: var(--shadow);
 +      overflow: hidden;
++      transition: transform 0.28s ease, box-shadow 0.28s ease;
++      cursor: pointer;
++    }
++
++    .project-card:hover {
++      transform: translateY(-4px);
++      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.17);
++    }
++
++    .project-card[hidden] {
++      display: none;
++    }
++
++    .project-thumb {
++      width: 100%;
++      height: 200px;
++      object-fit: cover;
++      display: block;
++      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
++    }
++
++    .project-body { padding: 1rem; }
++
++    .project-meta {
++      color: var(--muted);
++      font-size: 0.9rem;
++      margin-bottom: 0.4rem;
++    }
++
++    .project-body h3 {
++      color: var(--gold-soft);
++      margin-bottom: 0.45rem;
++    }
++
++    .project-body p {
++      margin: 0 0 0.6rem;
++      color: var(--muted);
++    }
++
++    .tags {
++      display: flex;
++      gap: 0.4rem;
++      flex-wrap: wrap;
++    }
++
++    .tag {
++      border: 1px solid rgba(212, 175, 55, 0.35);
++      border-radius: 999px;
++      padding: 0.2rem 0.55rem;
++      font-size: 0.82rem;
++      color: var(--gold-soft);
++    }
++
++    .cta {
++      text-align: center;
++      padding: 1rem 0 3.5rem;
++    }
++
++    .btn {
++      display: inline-block;
++      text-decoration: none;
++      padding: 0.75rem 1.2rem;
++      border-radius: 999px;
++      border: 1px solid rgba(212, 175, 55, 0.7);
++      background: linear-gradient(135deg, #c29f35, #ebcc6d);
++      color: #171717;
++      font-weight: 700;
++      box-shadow: var(--shadow);
++      transition: transform 0.25s ease, box-shadow 0.25s ease;
++    }
++
++    .btn:hover,
++    .btn:focus-visible {
++      transform: translateY(-2px);
++      box-shadow: 0 16px 34px rgba(212, 175, 55, 0.22);
++      outline: none;
++    }
++
++    .modal {
++      position: fixed;
++      inset: 0;
++      background: rgba(7, 10, 18, 0.86);
++      display: none;
++      align-items: center;
++      justify-content: center;
++      padding: 1rem;
++      z-index: 100;
++    }
++
++    .modal.open { display: flex; }
++
++    .modal-panel {
++      width: min(960px, 100%);
++      background: linear-gradient(175deg, #131b30, #10141f);
++      border: 1px solid rgba(212, 175, 55, 0.35);
++      border-radius: var(--radius);
++      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
++      overflow: hidden;
++    }
++
++    .modal-header {
++      display: flex;
++      justify-content: space-between;
++      align-items: center;
++      gap: 1rem;
++      padding: 0.9rem 1rem;
++      background: rgba(20, 27, 45, 0.85);
++      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
++    }
++
++    .modal-header h3 {
++      margin: 0;
++      color: var(--gold-soft);
++    }
++
++    .close-btn {
++      border: 1px solid rgba(212, 175, 55, 0.4);
++      border-radius: 999px;
++      background: transparent;
++      color: var(--gold-soft);
++      padding: 0.35rem 0.7rem;
++      cursor: pointer;
++      font-weight: 600;
++    }
++
++    .modal-content { padding: 1rem; }
++
++    .ba-slider {
++      position: relative;
++      width: 100%;
++      aspect-ratio: 16 / 9;
++      border-radius: 12px;
++      overflow: hidden;
++      background: #111;
++      border: 1px solid rgba(212, 175, 55, 0.25);
 +      user-select: none;
 +      touch-action: none;
 +    }
 +
-+    .before-layer,
-+    .after-layer {
++    .ba-image {
 +      position: absolute;
 +      inset: 0;
-+      height: 100%;
-+      width: 100%;
-+    }
-+
-+    .before-layer img,
-+    .after-layer img {
 +      width: 100%;
 +      height: 100%;
 +      object-fit: cover;
 +      pointer-events: none;
 +    }
 +
-+    .before-layer {
-+      clip-path: inset(0 50% 0 0);
-+      z-index: 10;
++    .after-wrap {
++      position: absolute;
++      inset: 0;
++      width: 50%;
++      overflow: hidden;
 +    }
 +
 +    .slider-line {
 +      position: absolute;
 +      top: 0;
 +      bottom: 0;
-+      width: 4px;
-+      background: linear-gradient(to bottom, rgba(212,175,55,.85), rgba(255,255,255,.95), rgba(212,175,55,.85));
-+      z-index: 20;
++      left: 50%;
++      width: 2px;
++      background: var(--gold);
++      box-shadow: 0 0 0 1px rgba(20, 27, 45, 0.9);
 +      transform: translateX(-50%);
 +      pointer-events: none;
-+      box-shadow: 0 0 24px rgba(212,175,55,.35);
 +    }
 +
 +    .slider-handle {
 +      position: absolute;
++      left: 50%;
 +      top: 50%;
 +      transform: translate(-50%, -50%);
-+      z-index: 25;
-+      width: 58px;
-+      height: 58px;
-+      border-radius: 999px;
-+      border: 3px solid rgba(212,175,55,.95);
-+      background: rgba(10,37,64,.95);
-+      color: #D4AF37;
-+      display: grid;
-+      place-items: center;
-+      font-size: 1.45rem;
-+      font-weight: 700;
++      width: 38px;
++      height: 38px;
++      border-radius: 50%;
++      background: var(--navy);
++      border: 2px solid var(--gold);
++      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
 +      pointer-events: none;
-+      box-shadow: 0 6px 25px rgba(212,175,55,.25);
 +    }
 +
-+    .slider-percent {
++    .label {
 +      position: absolute;
-+      top: 1rem;
-+      right: 1rem;
-+      z-index: 30;
-+      background: rgba(10,37,64,.86);
-+      border: 1px solid rgba(212,175,55,.55);
++      top: 0.8rem;
++      padding: 0.22rem 0.55rem;
 +      border-radius: 999px;
-+      padding: .3rem .7rem;
-+      color: #D4AF37;
-+      font-size: .875rem;
-+      font-weight: 600;
++      font-size: 0.74rem;
++      font-weight: 700;
++      letter-spacing: 0.04em;
++      color: #f4f3ef;
++      background: rgba(20, 27, 45, 0.78);
++      border: 1px solid rgba(212, 175, 55, 0.46);
++      text-transform: uppercase;
 +    }
 +
-+    @media (prefers-reduced-motion: reduce) {
-+      html { scroll-behavior: auto; }
-+      .fade-in, .project-card { transition: none !important; }
++    .label-before { left: 0.8rem; }
++    .label-after { right: 0.8rem; }
++
++    .modal-meta {
++      margin-top: 0.8rem;
++      color: var(--muted);
++      font-size: 0.95rem;
++    }
++
++    footer {
++      border-top: 1px solid rgba(212, 175, 55, 0.2);
++      color: var(--muted);
++      text-align: center;
++      padding: 1.5rem 0;
++    }
++
++    @media (max-width: 920px) {
++      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
++    }
++
++    @media (max-width: 640px) {
++      .hero { padding-top: 3.4rem; }
++      .project-thumb { height: 188px; }
++      .projects-grid { grid-template-columns: 1fr; }
++      .modal-content { padding: 0.75rem; }
 +    }
 +  </style>
 +</head>
-+<body class="text-slate-100 antialiased">
-+  <header class="sticky top-0 z-40 border-b border-gold/30 bg-navy/90 backdrop-blur-md">
-+    <div class="mx-auto flex w-[min(94%,1180px)] items-center justify-between gap-4 py-4">
-+      <a class="font-display text-xl font-semibold tracking-wide text-gold" href="index.html#top">Predictive Properties</a>
-+      <nav aria-label="Main" class="flex flex-wrap items-center gap-1 text-sm font-medium text-slate-300 sm:gap-2">
-+        <a class="rounded-full px-3 py-1.5 transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70" href="index.html#services">Services</a>
-+        <a class="rounded-full px-3 py-1.5 transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70" href="index.html#testimonials">Testimonials</a>
-+        <a class="rounded-full border border-gold/40 px-3 py-1.5 text-gold shadow-glow" href="projects.html" aria-current="page">Projects</a>
-+        <a class="rounded-full px-3 py-1.5 transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70" href="index.html#contact">Contact</a>
-+        <a class="rounded-full px-3 py-1.5 transition hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/70" href="admin.html">Admin</a>
++<body>
++  <header>
++    <div class="container nav-wrap">
++      <a class="logo" href="index.html">Predictive Properties</a>
++      <nav aria-label="Primary navigation">
++        <a href="index.html#services">Services</a>
++        <a href="index.html#testimonials">Testimonials</a>
++        <a href="index.html#contact">Contact</a>
 +      </nav>
 +    </div>
 +  </header>
 +
 +  <main>
-+    <section class="mx-auto w-[min(94%,1180px)] py-16 sm:py-20">
-+      <div class="glass rounded-3xl p-8 shadow-luxe sm:p-12 fade-in">
-+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-gold/90">Luxury Transformation Portfolio</p>
-+        <h1 class="font-display text-4xl leading-tight text-white sm:text-5xl">Before &amp; After Renovations That Outperform The Market</h1>
-+        <p class="mt-5 max-w-3xl text-base text-slate-300 sm:text-lg">We blend design intelligence, disciplined construction management, and investor-focused strategy to turn dated properties into premium homes with compelling resale value.</p>
++    <section class="hero fade-in">
++      <div class="container">
++        <h1>Before &amp; After Project Portfolio</h1>
++        <p>See how Predictive Properties reimagines neglected spaces into sophisticated homes tailored for modern buyers and maximum market appeal.</p>
 +      </div>
 +    </section>
 +
-+    <section class="mx-auto w-[min(94%,1180px)] pb-12">
-+      <div class="mb-8 flex flex-wrap items-center gap-3" id="filterButtons" aria-label="Project categories">
-+        <button class="filter-btn rounded-full border border-gold/35 bg-gold px-5 py-2 text-sm font-semibold text-navy shadow-glow transition" data-filter="all">All</button>
-+        <button class="filter-btn rounded-full border border-gold/35 bg-navy/40 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-gold hover:text-gold" data-filter="Kitchen">Kitchen</button>
-+        <button class="filter-btn rounded-full border border-gold/35 bg-navy/40 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-gold hover:text-gold" data-filter="Bathroom">Bathroom</button>
-+        <button class="filter-btn rounded-full border border-gold/35 bg-navy/40 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-gold hover:text-gold" data-filter="Exterior">Exterior</button>
-+        <button class="filter-btn rounded-full border border-gold/35 bg-navy/40 px-5 py-2 text-sm font-semibold text-slate-200 transition hover:border-gold hover:text-gold" data-filter="Full Home Renovation">Full Home Renovation</button>
++    <section class="container fade-in">
++      <h2>Featured Renovation Outcomes</h2>
++
++      <div class="filters" role="group" aria-label="Project filters">
++        <button class="filter-btn active" type="button" data-filter="all">All</button>
++        <button class="filter-btn" type="button" data-filter="kitchen">Kitchen</button>
++        <button class="filter-btn" type="button" data-filter="bathroom">Bathroom</button>
++        <button class="filter-btn" type="button" data-filter="exterior">Exterior</button>
++        <button class="filter-btn" type="button" data-filter="full-home">Full Home</button>
 +      </div>
 +
-+      <h2 class="sr-only">Project gallery</h2>
-+      <div id="projectsGrid" class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
++      <div class="projects-grid" id="projectsGrid">
++        <article class="project-card" data-project="1" data-category="full-home" tabindex="0" role="button" aria-label="Open Goose Creek before and after">
++          <img class="project-thumb" src="assets/images/goose_creek/a1.jpg" alt="After renovation view of Goose Creek" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Goose Creek · Charleston, SC</div>
++            <h3>Goose Creek</h3>
++            <p>Formerly a dated split-level, now a full-home luxury refresh with an entertainer kitchen, elevated baths, and polished curb appeal.</p>
++            <div class="tags"><span class="tag">Full Home</span><span class="tag">13 Weeks</span><span class="tag">+31% Value</span></div>
++          </div>
++        </article>
++
++        <article class="project-card" data-project="2" data-category="kitchen" tabindex="0" role="button" aria-label="Open Oak Ridge kitchen before and after">
++          <img class="project-thumb" src="assets/images/oak_ridge/a1.jpg" alt="After renovation view of Oak Ridge kitchen" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Oak Ridge · Raleigh, NC</div>
++            <h3>Oak Ridge Kitchen Revival</h3>
++            <p>Reworked traffic flow, oversized island install, and quartz-to-ceiling backsplash for a premium daily-use kitchen.</p>
++            <div class="tags"><span class="tag">Kitchen</span><span class="tag">7 Weeks</span><span class="tag">+18% Value</span></div>
++          </div>
++        </article>
++
++        <article class="project-card" data-project="3" data-category="bathroom" tabindex="0" role="button" aria-label="Open Lakeview Manor bath before and after">
++          <img class="project-thumb" src="assets/images/lakeview_manor/a1.jpg" alt="After renovation view of Lakeview Manor bathroom" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Lakeview Manor · Charlotte, NC</div>
++            <h3>Lakeview Manor Spa Bath</h3>
++            <p>Converted a cramped primary bath into a serene retreat with walk-in shower glazing, custom vanity, and layered lighting.</p>
++            <div class="tags"><span class="tag">Bathroom</span><span class="tag">5 Weeks</span><span class="tag">Premium Finish</span></div>
++          </div>
++        </article>
++
++        <article class="project-card" data-project="4" data-category="exterior" tabindex="0" role="button" aria-label="Open Riverbend exterior before and after">
++          <img class="project-thumb" src="assets/images/riverbend_estate/a1.jpg" alt="After renovation view of Riverbend Estate exterior" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Riverbend Estate · Nashville, TN</div>
++            <h3>Riverbend Estate Exterior Lift</h3>
++            <p>Facade modernization, architectural lighting, and layered landscaping to deliver standout first-impression impact.</p>
++            <div class="tags"><span class="tag">Exterior</span><span class="tag">6 Weeks</span><span class="tag">Curb Appeal</span></div>
++          </div>
++        </article>
++
++        <article class="project-card" data-project="5" data-category="kitchen" tabindex="0" role="button" aria-label="Open Cedar Pointe kitchen before and after">
++          <img class="project-thumb" src="assets/images/cedar_pointe/a1.jpg" alt="After renovation view of Cedar Pointe kitchen" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Cedar Pointe · Greenville, SC</div>
++            <h3>Cedar Pointe Chef Kitchen</h3>
++            <p>Designed for hosting with expanded prep zones, custom storage towers, and warm brass hardware detailing.</p>
++            <div class="tags"><span class="tag">Kitchen</span><span class="tag">8 Weeks</span><span class="tag">High Demand</span></div>
++          </div>
++        </article>
++
++        <article class="project-card" data-project="6" data-category="full-home" tabindex="0" role="button" aria-label="Open Maple Heights full home before and after">
++          <img class="project-thumb" src="assets/images/maple_heights/a1.jpg" alt="After renovation view of Maple Heights full home" loading="lazy" />
++          <div class="project-body">
++            <div class="project-meta">Maple Heights · Atlanta, GA</div>
++            <h3>Maple Heights Reinvention</h3>
++            <p>Comprehensive interior and exterior transformation to align layout, material quality, and market-ready presentation.</p>
++            <div class="tags"><span class="tag">Full Home</span><span class="tag">11 Weeks</span><span class="tag">Top Offer</span></div>
++          </div>
++        </article>
++      </div>
++    </section>
++
++    <section class="cta fade-in">
++      <div class="container">
++        <h2>Start Your Next Transformation</h2>
++        <p style="color:#bbb9b2;">Ready for your own house flipping before and after success story?</p>
++        <a class="btn" href="index.html#contact">Contact Predictive Properties</a>
++      </div>
 +    </section>
 +  </main>
 +
-+  <div id="projectModal" class="fixed inset-0 z-50 hidden">
-+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" data-close-modal></div>
-+    <section class="relative mx-auto my-4 h-[calc(100%-2rem)] w-[min(96%,1100px)] overflow-y-auto rounded-2xl border border-gold/30 bg-ink shadow-luxe sm:my-8 sm:h-[calc(100%-4rem)]" aria-labelledby="modalTitle" role="dialog" aria-modal="true">
-+      <button class="absolute right-4 top-4 z-50 rounded-full border border-gold/50 bg-navy/85 px-3 py-1 text-2xl leading-none text-gold transition hover:bg-gold hover:text-navy" aria-label="Close project details" data-close-modal>&times;</button>
-+
-+      <div class="p-5 sm:p-8">
-+        <p id="modalCategory" class="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold/90"></p>
-+        <h3 id="modalTitle" class="font-display text-3xl text-white sm:text-4xl"></h3>
-+        <p id="modalAddress" class="mt-2 text-sm text-slate-300"></p>
-+
-+        <div class="before-after-wrap mt-6 h-64 rounded-xl border border-gold/35 sm:h-[420px]" id="beforeAfterSlider" aria-label="Before and after image comparison slider">
-+          <div class="after-layer"><img id="afterImage" src="" alt="" loading="lazy" /></div>
-+          <div class="before-layer" id="beforeLayer"><img id="beforeImage" src="" alt="" loading="lazy" /></div>
-+          <div class="slider-line" id="sliderLine"></div>
-+          <div class="slider-handle" id="sliderHandle" aria-hidden="true">⇄</div>
-+          <div class="slider-percent" id="sliderPercent">50%</div>
-+          <div class="pointer-events-none absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-bold tracking-[0.2em] text-white">BEFORE</div>
-+          <div class="pointer-events-none absolute right-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-bold tracking-[0.2em] text-white">AFTER</div>
-+        </div>
-+
-+        <div class="mt-7 grid gap-8 lg:grid-cols-[1.3fr_1fr]">
-+          <div>
-+            <h4 class="text-lg font-semibold text-gold">Project Story</h4>
-+            <p id="modalDescription" class="mt-2 text-slate-200"></p>
-+
-+            <h4 class="mt-6 text-lg font-semibold text-gold">Transformation Highlights</h4>
-+            <ul id="highlightsList" class="mt-3 space-y-2 text-sm text-slate-200"></ul>
-+
-+            <h4 class="mt-6 text-lg font-semibold text-gold">View All Photos</h4>
-+            <div id="photoGallery" class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
-+          </div>
-+
-+          <aside class="space-y-5">
-+            <div class="rounded-xl border border-gold/25 bg-navy/45 p-4">
-+              <h4 class="text-base font-semibold text-gold">Performance Snapshot</h4>
-+              <dl id="statsGrid" class="mt-3 grid grid-cols-2 gap-3 text-sm"></dl>
-+            </div>
-+
-+            <div class="rounded-xl border border-gold/25 bg-navy/45 p-4">
-+              <h4 class="text-base font-semibold text-gold">Before vs After</h4>
-+              <div id="comparisonGrid" class="mt-3 space-y-2 text-sm text-slate-200"></div>
-+            </div>
-+
-+            <div class="rounded-xl border border-gold/25 bg-navy/45 p-4">
-+              <h4 class="text-base font-semibold text-gold">Share This Project</h4>
-+              <div class="mt-3 flex flex-wrap gap-2">
-+                <a id="shareInstagram" class="rounded-full border border-gold/45 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gold transition hover:bg-gold hover:text-navy" href="#" target="_blank" rel="noopener">Instagram</a>
-+                <a id="shareFacebook" class="rounded-full border border-gold/45 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gold transition hover:bg-gold hover:text-navy" href="#" target="_blank" rel="noopener">Facebook</a>
-+                <button id="copyLinkBtn" class="rounded-full border border-gold/45 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-gold transition hover:bg-gold hover:text-navy">Copy Link</button>
-+              </div>
-+              <p id="copyStatus" class="mt-2 text-xs text-slate-300" aria-live="polite"></p>
-+            </div>
-+
-+            <a href="index.html#contact" class="block rounded-xl bg-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-wide text-navy transition hover:brightness-110">Contact Us About Similar Projects</a>
-+          </aside>
-+        </div>
++  <div class="modal" id="projectModal" aria-hidden="true">
++    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
++      <div class="modal-header">
++        <h3 id="modalTitle">Project Before &amp; After</h3>
++        <button class="close-btn" id="closeModal" type="button" aria-label="Close project modal">Close</button>
 +      </div>
-+    </section>
++      <div class="modal-content">
++        <div class="ba-slider" id="baSlider">
++          <img class="ba-image" id="beforeImage" src="assets/images/goose_creek/b1.jpg" alt="Before renovation image" />
++          <div class="after-wrap" id="afterWrap">
++            <img class="ba-image" id="afterImage" src="assets/images/goose_creek/a1.jpg" alt="After renovation image" />
++          </div>
++          <span class="label label-before">BEFORE</span>
++          <span class="label label-after">AFTER</span>
++          <div class="slider-line" id="sliderLine"></div>
++          <div class="slider-handle" id="sliderHandle"></div>
++        </div>
++        <p class="modal-meta" id="modalMeta"></p>
++      </div>
++    </div>
 +  </div>
 +
-+  <footer class="border-t border-gold/20 py-8 text-center text-sm text-slate-300">
-+    <p>© 2026 Predictive Properties. Premium house flipping projects, thoughtfully executed.</p>
++  <footer>
++    <div class="container">© 2026 Predictive Properties. High-performance renovations, elevated design.</div>
 +  </footer>
 +
 +  <script>
-+    const projectData = [
-+      {
-+        id: 'goose-creek',
-+        name: 'Goose Creek Estate Revival',
-+        category: 'Full Home Renovation',
-+        address: 'Goose Creek, SC',
-+        beforeImage: 'assets/images/goose-creek/before.jpg',
-+        afterImage: 'assets/images/goose-creek/after.jpg',
-+        gallery: [
-+          'assets/images/goose-creek/detail-1.jpg',
-+          'assets/images/goose-creek/detail-2.jpg',
-+          'assets/images/goose-creek/detail-3.jpg',
-+          'assets/images/goose-creek/detail-4.jpg',
-+          'assets/images/goose-creek/detail-5.jpg',
-+          'assets/images/goose-creek/detail-6.jpg'
-+        ],
-+        description: 'A complete luxury repositioning of a 1990s floor plan. We introduced dramatic ceiling heights, a chef-caliber kitchen, marble-forward bathrooms, and a modernized exterior package that increased competitive bidding activity in the first weekend.',
-+        stats: {
-+          investment: '$245,000',
-+          valueAdded: '$392,000',
-+          roi: '60%',
-+          sqft: '3,480 sq ft',
-+          timeline: '14 weeks',
-+          offers: '7 offers'
-+        },
-+        comparison: [
-+          { label: 'Kitchen', before: 'Closed layout + laminate counters', after: 'Open concept + quartz waterfall island' },
-+          { label: 'Primary Suite', before: 'Dated finishes, no focal lighting', after: 'Spa shower, slab tile, custom vanity lighting' },
-+          { label: 'Exterior', before: 'Flat curb appeal', after: 'Board & batten accents, premium landscape lighting' }
-+        ],
-+        highlights: [
-+          'Reworked structural walls to create a continuous entertainment core.',
-+          'Installed custom cabinetry and integrated appliance suite.',
-+          'Delivered a market-ready staging palette that matched local buyer analytics.'
-+        ]
-+      },
-+      {
-+        id: 'harbor-kitchen',
-+        name: 'Harbor View Culinary Upgrade',
-+        category: 'Kitchen',
-+        address: 'Mount Pleasant, SC',
-+        beforeImage: 'assets/images/harbor-view-kitchen/before.jpg',
-+        afterImage: 'assets/images/harbor-view-kitchen/after.jpg',
-+        gallery: [
-+          'assets/images/harbor-view-kitchen/detail-1.jpg',
-+          'assets/images/harbor-view-kitchen/detail-2.jpg',
-+          'assets/images/harbor-view-kitchen/detail-3.jpg',
-+          'assets/images/harbor-view-kitchen/detail-4.jpg'
-+        ],
-+        description: 'This culinary-centered remodel focused on premium function and visual drama. The resulting kitchen drove stronger showing feedback and significantly improved perceived home value.',
-+        stats: {
-+          investment: '$88,000',
-+          valueAdded: '$152,000',
-+          roi: '73%',
-+          sqft: '620 sq ft',
-+          timeline: '6 weeks',
-+          offers: '3 over ask'
-+        },
-+        comparison: [
-+          { label: 'Storage', before: 'Limited upper cabinets', after: 'Full-height custom storage wall' },
-+          { label: 'Lighting', before: 'Single ceiling fixture', after: 'Layered pendants + under-cabinet LEDs' }
-+        ],
-+        highlights: [
-+          'Expanded prep zones with dual sink workstations.',
-+          'Introduced matte brass and warm oak accents for a luxury feel.',
-+          'Improved circulation for open-plan dining integration.'
-+        ]
-+      },
-+      {
-+        id: 'seabreeze-bath',
-+        name: 'Seabreeze Spa Bathroom Renovation',
-+        category: 'Bathroom',
-+        address: 'Charleston, SC',
-+        beforeImage: 'assets/images/seabreeze-bathroom/before.jpg',
-+        afterImage: 'assets/images/seabreeze-bathroom/after.jpg',
-+        gallery: [
-+          'assets/images/seabreeze-bathroom/detail-1.jpg',
-+          'assets/images/seabreeze-bathroom/detail-2.jpg',
-+          'assets/images/seabreeze-bathroom/detail-3.jpg',
-+          'assets/images/seabreeze-bathroom/detail-4.jpg'
-+        ],
-+        description: 'A compact, dated bathroom was transformed into a spa-style retreat with a frameless glass enclosure, premium stone surfaces, and elevated lighting composition.',
-+        stats: {
-+          investment: '$39,000',
-+          valueAdded: '$74,000',
-+          roi: '89%',
-+          sqft: '210 sq ft',
-+          timeline: '4 weeks',
-+          offers: 'Higher appraisal'
-+        },
-+        comparison: [
-+          { label: 'Shower', before: 'Small acrylic insert', after: 'Large-format tile + rain system' },
-+          { label: 'Vanity', before: 'Builder-grade cabinet', after: 'Floating vanity + backlit mirror wall' }
-+        ],
-+        highlights: [
-+          'Reconfigured plumbing for a better vanity footprint.',
-+          'Added niche lighting and hotel-inspired finishes.',
-+          'Installed efficient fixtures to balance luxury and utility.'
-+        ]
-+      },
-+      {
-+        id: 'oakline-exterior',
-+        name: 'Oakline Curb Appeal Overhaul',
-+        category: 'Exterior',
-+        address: 'Summerville, SC',
-+        beforeImage: 'assets/images/oakline-exterior/before.jpg',
-+        afterImage: 'assets/images/oakline-exterior/after.jpg',
-+        gallery: [
-+          'assets/images/oakline-exterior/detail-1.jpg',
-+          'assets/images/oakline-exterior/detail-2.jpg',
-+          'assets/images/oakline-exterior/detail-3.jpg',
-+          'assets/images/oakline-exterior/detail-4.jpg'
-+        ],
-+        description: 'A strategic exterior package focused on first-impression value: façade repaint, architectural accents, custom front entry, and an evening-ready landscape lighting plan.',
-+        stats: {
-+          investment: '$52,000',
-+          valueAdded: '$97,000',
-+          roi: '86%',
-+          sqft: '2,260 sq ft lot front',
-+          timeline: '5 weeks',
-+          offers: 'Faster DOM'
-+        },
-+        comparison: [
-+          { label: 'Façade', before: 'Flat, single-tone finish', after: 'Designer contrast palette + trim detailing' },
-+          { label: 'Entry', before: 'Standard builder door', after: 'Custom iron + glass statement door' }
-+        ],
-+        highlights: [
-+          'Optimized color strategy for modern luxury buyers.',
-+          'Boosted nighttime curb visibility with low-voltage lighting.',
-+          'Completed all exterior work while preserving project schedule certainty.'
-+        ]
-+      }
-+    ];
-+
-+    const grid = document.getElementById('projectsGrid');
-+    const modal = document.getElementById('projectModal');
-+
-+    const modalEls = {
-+      category: document.getElementById('modalCategory'),
-+      title: document.getElementById('modalTitle'),
-+      address: document.getElementById('modalAddress'),
-+      beforeImage: document.getElementById('beforeImage'),
-+      afterImage: document.getElementById('afterImage'),
-+      description: document.getElementById('modalDescription'),
-+      highlights: document.getElementById('highlightsList'),
-+      stats: document.getElementById('statsGrid'),
-+      comparison: document.getElementById('comparisonGrid'),
-+      gallery: document.getElementById('photoGallery')
-+    };
-+
-+    const slider = {
-+      wrapper: document.getElementById('beforeAfterSlider'),
-+      beforeLayer: document.getElementById('beforeLayer'),
-+      line: document.getElementById('sliderLine'),
-+      handle: document.getElementById('sliderHandle'),
-+      percent: document.getElementById('sliderPercent'),
-+      dragActive: false,
-+      value: 50
-+    };
-+
-+    function escapeHtml(str) {
-+      return str.replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-+    }
-+
-+    function cardTemplate(project) {
-+      return `
-+        <article class="project-card fade-in glass overflow-hidden rounded-2xl border border-gold/25" data-category="${escapeHtml(project.category)}">
-+          <button class="w-full text-left" data-project-id="${escapeHtml(project.id)}" aria-label="Open details for ${escapeHtml(project.name)}">
-+            <img class="h-60 w-full object-cover sm:h-64" src="${escapeHtml(project.afterImage)}" alt="${escapeHtml(project.name)} after renovation showcase" loading="lazy" />
-+            <div class="p-5">
-+              <div class="mb-2 flex items-center justify-between gap-2">
-+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold/90">${escapeHtml(project.category)}</p>
-+                <p class="text-xs text-slate-300">${escapeHtml(project.address)}</p>
-+              </div>
-+              <h3 class="font-display text-2xl text-white">${escapeHtml(project.name)}</h3>
-+              <p class="mt-2 line-clamp-2 text-sm text-slate-300">${escapeHtml(project.description)}</p>
-+
-+              <dl class="mt-4 grid grid-cols-2 gap-2 text-xs text-slate-200 sm:text-sm">
-+                <div class="rounded-lg bg-navy/45 px-2 py-1.5"><dt class="text-gold/80">Investment</dt><dd>${escapeHtml(project.stats.investment)}</dd></div>
-+                <div class="rounded-lg bg-navy/45 px-2 py-1.5"><dt class="text-gold/80">Value Added</dt><dd>${escapeHtml(project.stats.valueAdded)}</dd></div>
-+                <div class="rounded-lg bg-navy/45 px-2 py-1.5"><dt class="text-gold/80">ROI</dt><dd>${escapeHtml(project.stats.roi)}</dd></div>
-+                <div class="rounded-lg bg-navy/45 px-2 py-1.5"><dt class="text-gold/80">Square Footage</dt><dd>${escapeHtml(project.stats.sqft)}</dd></div>
-+              </dl>
-+            </div>
-+          </button>
-+        </article>`;
-+    }
-+
-+    function renderGrid(projects) {
-+      grid.innerHTML = projects.map(cardTemplate).join('');
-+      attachCardEvents();
-+      activateFadeIns();
-+    }
-+
-+    function openModal(project) {
-+      modalEls.category.textContent = project.category;
-+      modalEls.title.textContent = project.name;
-+      modalEls.address.textContent = project.address;
-+      modalEls.beforeImage.src = project.beforeImage;
-+      modalEls.afterImage.src = project.afterImage;
-+      modalEls.beforeImage.alt = `${project.name} before renovation`;
-+      modalEls.afterImage.alt = `${project.name} after renovation`;
-+      modalEls.description.textContent = project.description;
-+
-+      modalEls.highlights.innerHTML = project.highlights.map((item) => `<li class="flex gap-2"><span class="mt-1 text-gold">◆</span><span>${escapeHtml(item)}</span></li>`).join('');
-+
-+      modalEls.stats.innerHTML = Object.entries(project.stats).map(([key, value]) => `
-+        <div class="rounded-lg bg-navy/60 p-2">
-+          <dt class="text-xs uppercase tracking-wide text-gold/85">${escapeHtml(key.replace(/([A-Z])/g, ' $1'))}</dt>
-+          <dd class="text-sm text-slate-100">${escapeHtml(value)}</dd>
-+        </div>`).join('');
-+
-+      modalEls.comparison.innerHTML = project.comparison.map((item) => `
-+        <div class="rounded-lg border border-gold/20 bg-navy/60 p-2">
-+          <p class="text-xs uppercase tracking-wide text-gold/85">${escapeHtml(item.label)}</p>
-+          <p><span class="text-slate-400">Before:</span> ${escapeHtml(item.before)}</p>
-+          <p><span class="text-slate-400">After:</span> ${escapeHtml(item.after)}</p>
-+        </div>`).join('');
-+
-+      modalEls.gallery.innerHTML = project.gallery.slice(0, 6).map((src, index) => `
-+        <img class="h-28 w-full rounded-lg border border-gold/25 object-cover" loading="lazy" src="${escapeHtml(src)}" alt="${escapeHtml(project.name)} transformation photo ${index + 1}" />`).join('');
-+
-+      const pageUrl = `${window.location.origin}${window.location.pathname}#${project.id}`;
-+      document.getElementById('shareInstagram').href = `https://www.instagram.com/`;
-+      document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-+      document.getElementById('copyLinkBtn').onclick = async () => {
-+        try {
-+          await navigator.clipboard.writeText(pageUrl);
-+          document.getElementById('copyStatus').textContent = 'Project link copied.';
-+        } catch {
-+          document.getElementById('copyStatus').textContent = 'Unable to copy link on this device.';
++    const fadeInSections = document.querySelectorAll('.fade-in');
++    const observer = new IntersectionObserver((entries, obs) => {
++      entries.forEach((entry) => {
++        if (entry.isIntersecting) {
++          entry.target.classList.add('visible');
++          obs.unobserve(entry.target);
 +        }
-+      };
++      });
++    }, { threshold: 0.16 });
++    fadeInSections.forEach((section) => observer.observe(section));
 +
-+      modal.classList.remove('hidden');
-+      document.body.classList.add('overflow-hidden');
-+      setSlider(50);
++    const projectData = {
++      1: {
++        title: 'Goose Creek',
++        summary: 'Location: Charleston, SC · Full Home · 13 weeks · Before/after assets follow assets/images/{property_name}/b1.jpg + a1.jpg.',
++        before: 'assets/images/goose_creek/b1.jpg',
++        after: 'assets/images/goose_creek/a1.jpg'
++      },
++      2: {
++        title: 'Oak Ridge Kitchen Revival',
++        summary: 'Location: Raleigh, NC · Kitchen · 7 weeks · Structured with a dedicated image folder per project.',
++        before: 'assets/images/oak_ridge/b1.jpg',
++        after: 'assets/images/oak_ridge/a1.jpg'
++      },
++      3: {
++        title: 'Lakeview Manor Spa Bath',
++        summary: 'Location: Charlotte, NC · Bathroom · 5 weeks · Uses standardized project image folder naming.',
++        before: 'assets/images/lakeview_manor/b1.jpg',
++        after: 'assets/images/lakeview_manor/a1.jpg'
++      },
++      4: {
++        title: 'Riverbend Estate Exterior Lift',
++        summary: 'Location: Nashville, TN · Exterior · 6 weeks · Organized in assets/images/riverbend_estate/.',
++        before: 'assets/images/riverbend_estate/b1.jpg',
++        after: 'assets/images/riverbend_estate/a1.jpg'
++      },
++      5: {
++        title: 'Cedar Pointe Chef Kitchen',
++        summary: 'Location: Greenville, SC · Kitchen · 8 weeks · Includes standard before/after filenames.',
++        before: 'assets/images/cedar_pointe/b1.jpg',
++        after: 'assets/images/cedar_pointe/a1.jpg'
++      },
++      6: {
++        title: 'Maple Heights Reinvention',
++        summary: 'Location: Atlanta, GA · Full Home · 11 weeks · Consistent kebab_case folder pattern with b1/a1 files.',
++        before: 'assets/images/maple_heights/b1.jpg',
++        after: 'assets/images/maple_heights/a1.jpg'
++      }
++    };
++
++    const modal = document.getElementById('projectModal');
++    const closeModalBtn = document.getElementById('closeModal');
++    const modalTitle = document.getElementById('modalTitle');
++    const modalMeta = document.getElementById('modalMeta');
++    const beforeImage = document.getElementById('beforeImage');
++    const afterImage = document.getElementById('afterImage');
++    const slider = document.getElementById('baSlider');
++    const afterWrap = document.getElementById('afterWrap');
++    const sliderLine = document.getElementById('sliderLine');
++    const sliderHandle = document.getElementById('sliderHandle');
++
++    let isDragging = false;
++
++    function setSliderPosition(clientX) {
++      const rect = slider.getBoundingClientRect();
++      const offsetX = Math.min(Math.max(clientX - rect.left, 0), rect.width);
++      const percent = (offsetX / rect.width) * 100;
++      afterWrap.style.width = `${percent}%`;
++      sliderLine.style.left = `${percent}%`;
++      sliderHandle.style.left = `${percent}%`;
++    }
++
++    function openModal(projectId) {
++      const project = projectData[projectId];
++      if (!project) return;
++
++      modalTitle.textContent = `${project.title} | Before & After`;
++      modalMeta.textContent = project.summary;
++      beforeImage.src = project.before;
++      beforeImage.alt = `Before image for ${project.title}`;
++      afterImage.src = project.after;
++      afterImage.alt = `After image for ${project.title}`;
++      afterWrap.style.width = '50%';
++      sliderLine.style.left = '50%';
++      sliderHandle.style.left = '50%';
++
++      modal.classList.add('open');
++      modal.setAttribute('aria-hidden', 'false');
++      document.body.style.overflow = 'hidden';
 +    }
 +
 +    function closeModal() {
-+      modal.classList.add('hidden');
-+      document.body.classList.remove('overflow-hidden');
++      modal.classList.remove('open');
++      modal.setAttribute('aria-hidden', 'true');
++      document.body.style.overflow = '';
 +    }
 +
-+    function attachCardEvents() {
-+      document.querySelectorAll('[data-project-id]').forEach((button) => {
-+        button.addEventListener('click', () => {
-+          const project = projectData.find((item) => item.id === button.dataset.projectId);
-+          if (project) openModal(project);
-+        });
++    document.querySelectorAll('.project-card').forEach((card) => {
++      card.addEventListener('click', () => openModal(card.dataset.project));
++      card.addEventListener('keydown', (event) => {
++        if (event.key === 'Enter' || event.key === ' ') {
++          event.preventDefault();
++          openModal(card.dataset.project);
++        }
 +      });
-+    }
-+
-+    function setSlider(value) {
-+      slider.value = Math.min(100, Math.max(0, value));
-+      slider.beforeLayer.style.clipPath = `inset(0 ${100 - slider.value}% 0 0)`;
-+      slider.line.style.left = `${slider.value}%`;
-+      slider.handle.style.left = `${slider.value}%`;
-+      slider.percent.textContent = `${Math.round(slider.value)}%`;
-+    }
-+
-+    function updateSliderFromPointer(clientX) {
-+      const rect = slider.wrapper.getBoundingClientRect();
-+      const nextValue = ((clientX - rect.left) / rect.width) * 100;
-+      setSlider(nextValue);
-+    }
-+
-+    function initSlider() {
-+      slider.wrapper.addEventListener('pointerdown', (event) => {
-+        slider.dragActive = true;
-+        updateSliderFromPointer(event.clientX);
-+      });
-+
-+      window.addEventListener('pointermove', (event) => {
-+        if (!slider.dragActive) return;
-+        updateSliderFromPointer(event.clientX);
-+      });
-+
-+      window.addEventListener('pointerup', () => {
-+        slider.dragActive = false;
-+      });
-+
-+      window.addEventListener('pointercancel', () => {
-+        slider.dragActive = false;
-+      });
-+    }
-+
-+    function initFilters() {
-+      const buttons = document.querySelectorAll('.filter-btn');
-+      buttons.forEach((button) => {
-+        button.addEventListener('click', () => {
-+          buttons.forEach((btn) => {
-+            btn.classList.remove('bg-gold', 'text-navy', 'shadow-glow');
-+            btn.classList.add('bg-navy/40', 'text-slate-200');
-+          });
-+          button.classList.add('bg-gold', 'text-navy', 'shadow-glow');
-+          button.classList.remove('bg-navy/40', 'text-slate-200');
-+
-+          const selected = button.dataset.filter;
-+          const cards = document.querySelectorAll('.project-card');
-+          cards.forEach((card) => {
-+            const match = selected === 'all' || card.dataset.category === selected;
-+            card.classList.toggle('hidden', !match);
-+          });
-+        });
-+      });
-+    }
-+
-+    function activateFadeIns() {
-+      const animated = document.querySelectorAll('.fade-in');
-+      const observer = new IntersectionObserver((entries) => {
-+        entries.forEach((entry) => {
-+          if (entry.isIntersecting) {
-+            entry.target.classList.add('visible');
-+            observer.unobserve(entry.target);
-+          }
-+        });
-+      }, { threshold: 0.15 });
-+
-+      animated.forEach((el) => observer.observe(el));
-+    }
-+
-+    document.querySelectorAll('[data-close-modal]').forEach((el) => el.addEventListener('click', closeModal));
-+    window.addEventListener('keydown', (event) => {
-+      if (event.key === 'Escape') closeModal();
 +    });
 +
-+    renderGrid(projectData);
-+    initFilters();
-+    initSlider();
-+    activateFadeIns();
++    closeModalBtn.addEventListener('click', closeModal);
++    modal.addEventListener('click', (event) => {
++      if (event.target === modal) closeModal();
++    });
++    document.addEventListener('keydown', (event) => {
++      if (event.key === 'Escape' && modal.classList.contains('open')) closeModal();
++    });
++
++    slider.addEventListener('mousedown', (event) => {
++      isDragging = true;
++      setSliderPosition(event.clientX);
++    });
++
++    window.addEventListener('mousemove', (event) => {
++      if (!isDragging) return;
++      setSliderPosition(event.clientX);
++    });
++
++    window.addEventListener('mouseup', () => {
++      isDragging = false;
++    });
++
++    slider.addEventListener('touchstart', (event) => {
++      isDragging = true;
++      setSliderPosition(event.touches[0].clientX);
++    }, { passive: true });
++
++    window.addEventListener('touchmove', (event) => {
++      if (!isDragging) return;
++      setSliderPosition(event.touches[0].clientX);
++    }, { passive: true });
++
++    window.addEventListener('touchend', () => {
++      isDragging = false;
++    });
++
++    const filterButtons = document.querySelectorAll('.filter-btn');
++    const projectCards = document.querySelectorAll('.project-card');
++
++    filterButtons.forEach((button) => {
++      button.addEventListener('click', () => {
++        const selected = button.dataset.filter;
++
++        filterButtons.forEach((btn) => btn.classList.remove('active'));
++        button.classList.add('active');
++
++        projectCards.forEach((card) => {
++          const category = card.dataset.category;
++          card.hidden = !(selected === 'all' || selected === category);
++        });
++      });
++    });
 +  </script>
 +</body>
 +</html>
