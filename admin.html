@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predictive Properties Admin</title>
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #181a23;
+      --text: #f3f2ee;
+      --muted: #bbb9b2;
+      --gold: #d4af37;
+      --gold-soft: #f2dd9a;
+      --radius: 14px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.34);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top, #151726 0%, #0f0f13 55%);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(94%, 900px);
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      margin-top: 0;
+    }
+
+    .panel {
+      background: linear-gradient(175deg, #1b1e29, #141722);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .status {
+      margin: 0 0 1rem;
+      color: var(--gold-soft);
+      font-weight: 600;
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--gold-soft);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 0.7rem 0.75rem;
+      font: inherit;
+      color: var(--text);
+      background: rgba(15, 15, 19, 0.7);
+    }
+
+    textarea { min-height: 92px; resize: vertical; }
+
+    .actions {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      background: linear-gradient(135deg, #c29f35, #ebcc6d);
+      color: #171717;
+      font-weight: 700;
+      width: auto;
+      min-width: 160px;
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--muted);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    li {
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 10px;
+      padding: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .muted { color: var(--muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Predictive Properties Admin</h1>
+
+    <section class="panel" id="auth-panel">
+      <p class="status" id="auth-status">Checking access...</p>
+    </section>
+
+    <section class="panel" id="admin-panel" hidden>
+      <h2>Add New Project</h2>
+      <form id="project-form">
+        <div>
+          <label for="title">Project title</label>
+          <input id="title" name="title" required />
+        </div>
+
+        <div>
+          <label for="location">Location</label>
+          <input id="location" name="location" required />
+        </div>
+
+        <div>
+          <label for="description">Short description</label>
+          <textarea id="description" name="description" required></textarea>
+        </div>
+
+        <div>
+          <label for="beforeImages">Before image URLs (comma separated)</label>
+          <textarea id="beforeImages" name="beforeImages" placeholder="https://.../before1.jpg, https://.../before2.jpg"></textarea>
+        </div>
+
+        <div>
+          <label for="afterImages">After image URLs (comma separated)</label>
+          <textarea id="afterImages" name="afterImages" placeholder="https://.../after1.jpg, https://.../after2.jpg"></textarea>
+        </div>
+
+        <div>
+          <label for="stats">Stats (comma separated, e.g. Investment: $180k, Value Added: $95k)</label>
+          <textarea id="stats" name="stats" placeholder="Investment: $180k, Value Added: $95k, Timeline: 10 weeks"></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Save Project</button>
+          <button type="button" class="secondary" id="clear-form">Clear Form</button>
+        </div>
+      </form>
+      <p class="status" id="save-status" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="existing-panel" hidden>
+      <h2>Saved Projects</h2>
+      <ul id="saved-projects"></ul>
+      <p class="muted">These projects are saved in this browser's localStorage and automatically render on projects.html.</p>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'predictiveProjects';
+    const ADMIN_PASSWORD = 'predictive123';
+
+    const authStatusEl = document.getElementById('auth-status');
+    const authPanelEl = document.getElementById('auth-panel');
+    const adminPanelEl = document.getElementById('admin-panel');
+    const existingPanelEl = document.getElementById('existing-panel');
+    const projectFormEl = document.getElementById('project-form');
+    const saveStatusEl = document.getElementById('save-status');
+    const savedProjectsEl = document.getElementById('saved-projects');
+
+    function parseCommaSeparated(text) {
+      return text
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function getProjects() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const data = JSON.parse(raw);
+        return Array.isArray(data) ? data : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveProjects(projects) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+    }
+
+    function renderSavedProjects() {
+      const projects = getProjects();
+      savedProjectsEl.innerHTML = '';
+
+      if (!projects.length) {
+        savedProjectsEl.innerHTML = '<li><span class="muted">No projects saved yet.</span></li>';
+        return;
+      }
+
+      projects.forEach((project, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div>
+            <strong>${project.title}</strong><br />
+            <span class="muted">${project.location}</span>
+          </div>
+          <button type="button" data-index="${index}" class="secondary">Delete</button>
+        `;
+        savedProjectsEl.appendChild(li);
+      });
+    }
+
+    function gateAccess() {
+      const entered = window.prompt('Enter admin password:');
+
+      if (entered !== ADMIN_PASSWORD) {
+        authStatusEl.textContent = 'Access denied. Refresh and enter the correct password.';
+        return;
+      }
+
+      authPanelEl.hidden = true;
+      adminPanelEl.hidden = false;
+      existingPanelEl.hidden = false;
+      renderSavedProjects();
+    }
+
+    projectFormEl.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(projectFormEl);
+      const project = {
+        id: crypto.randomUUID(),
+        title: String(formData.get('title') || '').trim(),
+        location: String(formData.get('location') || '').trim(),
+        description: String(formData.get('description') || '').trim(),
+        beforeImages: parseCommaSeparated(String(formData.get('beforeImages') || '')),
+        afterImages: parseCommaSeparated(String(formData.get('afterImages') || '')),
+        stats: parseCommaSeparated(String(formData.get('stats') || '')),
+        createdAt: new Date().toISOString()
+      };
+
+      const projects = getProjects();
+      projects.unshift(project);
+      saveProjects(projects);
+
+      saveStatusEl.textContent = 'Project saved. It will now appear on projects.html in this browser.';
+      projectFormEl.reset();
+      renderSavedProjects();
+    });
+
+    document.getElementById('clear-form').addEventListener('click', () => {
+      projectFormEl.reset();
+      saveStatusEl.textContent = '';
+    });
+
+    savedProjectsEl.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-index]');
+      if (!button) return;
+
+      const index = Number(button.dataset.index);
+      const projects = getProjects();
+      projects.splice(index, 1);
+      saveProjects(projects);
+      saveStatusEl.textContent = 'Project removed.';
+      renderSavedProjects();
+    });
+
+    gateAccess();
+  </script>
+</body>
+</html>
