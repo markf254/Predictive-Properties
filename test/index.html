@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Predictive Properties | Luxury Home Flipping & Renovations</title>
+  <meta name="description" content="Predictive Properties transforms homes with premium house flipping before and after results and expert home renovations [your city]." />
+  <meta name="keywords" content="house flipping before and after, home renovations [your city], luxury home remodels, Predictive Properties" />
+  <meta name="theme-color" content="#0f0f13" />
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --surface: #171821;
+      --text: #f3f2ee;
+      --muted: #b9b7af;
+      --gold: #d4af37;
+      --gold-soft: #f4dd9a;
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      --radius: 14px;
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #0f0f13 0%, #10121a 55%, #0f0f13 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      letter-spacing: 0.02em;
+      margin-top: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      backdrop-filter: blur(8px);
+      background: rgba(15, 15, 19, 0.86);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold-soft);
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--gold-soft);
+      box-shadow: inset 0 -1px 0 var(--gold);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .hero {
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 1.8rem;
+      font-size: 1.05rem;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #c4a035, #e7c86b);
+      color: #161616;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--gold-soft);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(212, 175, 55, 0.2);
+      outline: none;
+    }
+
+    section {
+      padding: 3.4rem 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: linear-gradient(170deg, #1a1d28, #141620);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      color: var(--gold-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .testimonials-wrap {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow: var(--shadow);
+      background: #151823;
+    }
+
+    .track {
+      display: flex;
+      transition: transform 0.75s ease;
+      will-change: transform;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 1.5rem;
+      color: var(--muted);
+    }
+
+    .slide strong {
+      display: block;
+      margin-top: 0.9rem;
+      color: var(--gold-soft);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: #5d5f6b;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--gold);
+    }
+
+    form {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #151823;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 10px;
+      background: #0f1219;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .form-msg {
+      margin: 0;
+      color: #8ff0c7;
+      font-weight: 600;
+      min-height: 1.2rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center;
+      color: var(--muted);
+      padding: 1.6rem 0;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a class="logo" href="#top">Predictive Properties</a>
+      <nav aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero fade-in">
+      <div class="container">
+        <h1>Where Data-Driven Vision Meets Luxury Home Transformation</h1>
+        <p>Predictive Properties specializes in elevated house flipping before and after transformations, delivering premium design, efficient timelines, and reliable ROI.</p>
+        <div class="btn-row">
+          <a class="btn primary" href="projects.html">See Before &amp; After Projects</a>
+          <a class="btn secondary" href="#contact">Get a Free Consultation</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="fade-in">
+      <div class="container">
+        <h2>Our Signature Services</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Luxury Flips</h3>
+            <p>Full-scope renovations designed to maximize resale value while creating timeless buyer appeal.</p>
+          </article>
+          <article class="card">
+            <h3>Strategic Upgrades</h3>
+            <p>Kitchen, bath, flooring, and curb appeal investments guided by neighborhood demand insights.</p>
+          </article>
+          <article class="card">
+            <h3>Project Intelligence</h3>
+            <p>Transparent timelines, milestone reporting, and contractor coordination from concept to close.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="fade-in">
+      <div class="container">
+        <h2>What Clients Say</h2>
+        <div class="testimonials-wrap" aria-roledescription="carousel">
+          <div class="track" id="testimonialTrack">
+            <article class="slide">
+              “Predictive Properties turned our dated listing into a premium showpiece. We sold above asking in under a week.”
+              <strong>— Elena R., Home Seller</strong>
+            </article>
+            <article class="slide">
+              “The renovation quality and communication were exceptional. Every detail felt intentional and high-end.”
+              <strong>— Marcus T., Investor</strong>
+            </article>
+            <article class="slide">
+              “Their before-and-after results are stunning. They made the whole process simple and profitable.”
+              <strong>— Dana P., Repeat Client</strong>
+            </article>
+          </div>
+        </div>
+        <div class="dots" id="testimonialDots" aria-label="Carousel controls"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+      <div class="container">
+        <h2>Contact Predictive Properties</h2>
+        <form id="contactForm" novalidate>
+          <label>
+            Name
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send Message</button>
+          <p class="form-msg" id="formMessage" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Predictive Properties. Crafted for modern, high-value transformations.</div>
+  </footer>
+
+  <script>
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeElements.forEach((el) => fadeObserver.observe(el));
+
+    const track = document.getElementById('testimonialTrack');
+    const slides = Array.from(track.children);
+    const dotsWrap = document.getElementById('testimonialDots');
+    let index = 0;
+
+    const goToSlide = (newIndex) => {
+      index = (newIndex + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dotsWrap.querySelectorAll('button').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    };
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `dot${i === 0 ? ' active' : ''}`;
+      dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    let carouselInterval = setInterval(() => goToSlide(index + 1), 5000);
+    const resetInterval = () => {
+      clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => goToSlide(index + 1), 5000);
+    };
+    dotsWrap.addEventListener('click', resetInterval);
+
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!contactForm.checkValidity()) {
+        formMessage.textContent = 'Please fill out all fields correctly.';
+        formMessage.style.color = '#ffb3b3';
+        return;
+      }
+      formMessage.textContent = 'Thanks! Your message has been sent successfully.';
+      formMessage.style.color = '#8ff0c7';
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
